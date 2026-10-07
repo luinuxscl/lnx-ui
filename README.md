@@ -61,7 +61,7 @@ Las cadenas de la galería viven en el namespace `lnx-ui::design-gallery` (`lang
 | --- | --- |
 | `x-lnx-ui::stat` | `label`, `value`, `icon`, `color` |
 | `x-lnx-ui::stat-card` | `label`, `value`, `icon`, `color` (envuelve `stat` en `flux:card`) |
-| `x-lnx-ui::statistics-panel` | `title`, `updated-at` (opcional) y slot de métricas |
+| `x-lnx-ui::statistics-panel` | `title`, `updated-label` y `updated-icon` (opcionales); slots de métricas, `actions`, `description` y `empty` |
 | `x-lnx-ui::trend-card` | `label`, `value`, `change`, `series` (array), `color` |
 | `x-lnx-ui::tool-card` | `title`, `description`, `icon`, `href`, `color`, `external` |
 | `x-lnx-ui::placeholder-pattern` | `id` (opcional) |

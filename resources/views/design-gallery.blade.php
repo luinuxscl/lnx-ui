@@ -48,7 +48,11 @@
             <div id="statistics-panel" class="scroll-mt-24 space-y-3">
                 <flux:heading level="3"><code class="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-sm dark:bg-zinc-800">x-lnx-ui::statistics-panel</code></flux:heading>
 
-                <x-lnx-ui::statistics-panel :title="__('lnx-ui::design-gallery.statistics')" :updated-at="__('lnx-ui::design-gallery.updated_month')">
+                <x-lnx-ui::statistics-panel :title="__('lnx-ui::design-gallery.statistics')" :updated-label="__('lnx-ui::design-gallery.updated_month')" updated-icon="clock">
+                    <x-slot:actions>
+                        <flux:button size="sm" variant="ghost" icon="arrow-down-tray">{{ __('lnx-ui::design-gallery.export') }}</flux:button>
+                        <flux:button size="sm" variant="primary">{{ __('lnx-ui::design-gallery.last_7_days') }}</flux:button>
+                    </x-slot:actions>
                     <x-lnx-ui::stat class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('lnx-ui::design-gallery.sales')" value="230k" icon="chart-pie" color="violet" />
                     <x-lnx-ui::stat class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('lnx-ui::design-gallery.customers')" value="8.549k" icon="users" color="cyan" />
                     <x-lnx-ui::stat class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('lnx-ui::design-gallery.products')" value="1.423k" icon="shopping-cart" color="rose" />
@@ -57,6 +61,12 @@
 
                 <x-lnx-ui::statistics-panel :title="__('lnx-ui::design-gallery.statistics_no_update')">
                     <x-lnx-ui::stat class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('lnx-ui::design-gallery.sales')" value="230k" icon="chart-pie" />
+                </x-lnx-ui::statistics-panel>
+
+                <x-lnx-ui::statistics-panel :title="__('lnx-ui::design-gallery.statistics_empty')">
+                    <x-slot:empty>
+                        <flux:text>{{ __('lnx-ui::design-gallery.no_metrics') }}</flux:text>
+                    </x-slot:empty>
                 </x-lnx-ui::statistics-panel>
             </div>
 
