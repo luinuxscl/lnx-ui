@@ -10,6 +10,8 @@ class LnxUiServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'lnx-ui');
 
+        $this->loadTranslationsFrom(__DIR__.'/../lang', 'lnx-ui');
+
         $this->publishes([
             __DIR__.'/../resources/views' => resource_path('views/vendor/lnx-ui'),
         ], 'lnx-ui-views');

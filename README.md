@@ -42,6 +42,19 @@ Para publicar todas las vistas del paquete y editarlas:
 php artisan vendor:publish --tag=lnx-ui-views
 ```
 
+## Galería de diseño
+
+El paquete incluye la vista `lnx-ui::design-gallery`: el catálogo de componentes agrupados por tipo, cada uno con un nombre y un ancla estable (`#<nombre>`) para referenciarlo con la IA. Es contenido sin layout; la app lo envuelve en su propio layout y decide la ruta y el gating:
+
+```blade
+{{-- resources/views/design-gallery.blade.php --}}
+<x-layouts::app :title="__('Design gallery')" :breadcrumbs="[['label' => __('Design gallery')]]">
+    @include('lnx-ui::design-gallery')
+</x-layouts::app>
+```
+
+Las cadenas de la galería viven en el namespace `lnx-ui::design-gallery` (`lang/{en,es}/design-gallery.php`) y se pueden sobrescribir en `lang/vendor/lnx-ui/{locale}/design-gallery.php`.
+
 ## Componentes disponibles
 
 | Componente | Props |
