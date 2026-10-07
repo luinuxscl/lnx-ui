@@ -1,0 +1,55 @@
+{
+    "$schema": "https://getcomposer.org/schema.json",
+    "name": "luinuxscl/lnx-ui",
+    "description": "Componentes UI compartidos para aplicaciones derivadas del kit lnx (Blade anónimos, override-friendly).",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "blade",
+        "components",
+        "lnx",
+        "ui"
+    ],
+    "require": {
+        "php": "^8.3",
+        "illuminate/support": "^13.0",
+        "illuminate/view": "^13.0",
+        "livewire/flux": "^2.20"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.0",
+        "orchestra/testbench": "^11.3",
+        "pestphp/pest": "^5.3",
+        "pestphp/pest-plugin-laravel": "^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Luinuxscl\\LnxUi\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Luinuxscl\\LnxUi\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Luinuxscl\\LnxUi\\LnxUiServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "lint": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
