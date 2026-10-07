@@ -18,14 +18,44 @@ it('renders the stat card wrapping the stat component', function () {
         ->toContain('1,234');
 });
 
-it('renders the statistics panel with its title and slot', function () {
+it('renders the statistics panel with its title, accessible group and slot', function () {
     $html = Blade::render(
         '<x-lnx-ui::statistics-panel title="Statistics"><p>metric</p></x-lnx-ui::statistics-panel>'
     );
 
     expect($html)
         ->toContain('Statistics')
-        ->toContain('metric');
+        ->toContain('metric')
+        ->toContain('role="group"')
+        ->toContain('aria-label="Statistics"');
+});
+
+it('shows the update metadata only when a label is given', function () {
+    $withLabel = Blade::render(
+        '<x-lnx-ui::statistics-panel title="Statistics" updated-label="Updated 1 month ago" updated-icon="clock" />'
+    );
+    $withoutLabel = Blade::render('<x-lnx-ui::statistics-panel title="Statistics" />');
+
+    expect($withLabel)
+        ->toContain('Updated 1 month ago')
+        ->toContain('aria-label="Updated 1 month ago"')
+        ->toContain('cursor-help');
+
+    expect($withoutLabel)->not->toContain('cursor-help');
+});
+
+it('renders the header actions slot and the empty state', function () {
+    $actions = Blade::render(
+        '<x-lnx-ui::statistics-panel title="Statistics"><x-slot:actions><button>Export</button></x-slot:actions><p>metric</p></x-lnx-ui::statistics-panel>'
+    );
+    $empty = Blade::render(
+        '<x-lnx-ui::statistics-panel title="Statistics"><x-slot:empty><p>no data</p></x-slot:empty></x-lnx-ui::statistics-panel>'
+    );
+
+    expect($actions)->toContain('Export');
+    expect($empty)
+        ->toContain('no data')
+        ->not->toContain('grid-cols-12');
 });
 
 it('renders the tool card and marks external links', function () {
