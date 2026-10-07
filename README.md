@@ -46,7 +46,20 @@ php artisan vendor:publish --tag=lnx-ui-views
 
 | Componente | Props |
 | --- | --- |
-| `x-lnx-ui::trend-card` | `label`, `value`, `change`, `series` (array), `color` (`accent` predeterminado, `emerald`, `amber`, `rose`) |
+| `x-lnx-ui::stat` | `label`, `value`, `icon`, `color` |
+| `x-lnx-ui::stat-card` | `label`, `value`, `icon`, `color` (envuelve `stat` en `flux:card`) |
+| `x-lnx-ui::statistics-panel` | `title`, `updated-at` (opcional) y slot de métricas |
+| `x-lnx-ui::trend-card` | `label`, `value`, `change`, `series` (array), `color` |
+| `x-lnx-ui::tool-card` | `title`, `description`, `icon`, `href`, `color`, `external` |
+| `x-lnx-ui::placeholder-pattern` | `id` (opcional) |
+| `x-lnx-ui::auth-header` | `title`, `description` |
+| `x-lnx-ui::auth-session-status` | `status` |
+
+`color` acepta `accent` (predeterminado), `violet`, `cyan`, `rose`, `emerald`, `blue` y `amber`.
+
+## Versionado
+
+El paquete sigue [SemVer](https://semver.org/). Las apps consumidoras requieren `^1.0`, de modo que las adiciones de componentes (minor) se reciben con `composer update luinuxscl/lnx-ui` sin tocar `composer.json`.
 
 ## Desarrollo
 
