@@ -30,6 +30,19 @@ it('renders the statistics panel with its title, accessible group and slot', fun
         ->toContain('aria-label="Statistics"');
 });
 
+it('renders only the metrics when no title is given', function () {
+    $html = Blade::render(
+        '<x-lnx-ui::statistics-panel updated-label="Updated 1 month ago"><x-slot:actions><button>Export</button></x-slot:actions><p>metric</p></x-lnx-ui::statistics-panel>'
+    );
+
+    expect($html)
+        ->toContain('metric')
+        ->toContain('grid-cols-12')
+        ->not->toContain('aria-label')
+        ->not->toContain('Export')
+        ->not->toContain('cursor-help');
+});
+
 it('shows the update metadata only when a label is given', function () {
     $withLabel = Blade::render(
         '<x-lnx-ui::statistics-panel title="Statistics" updated-label="Updated 1 month ago" updated-icon="clock" />'

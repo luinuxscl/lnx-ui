@@ -63,6 +63,11 @@
                     <x-lnx-ui::stat class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('lnx-ui::design-gallery.sales')" value="230k" icon="chart-pie" />
                 </x-lnx-ui::statistics-panel>
 
+                <x-lnx-ui::statistics-panel>
+                    <x-lnx-ui::stat class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('lnx-ui::design-gallery.sales')" value="230k" icon="chart-pie" color="violet" />
+                    <x-lnx-ui::stat class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('lnx-ui::design-gallery.customers')" value="8.549k" icon="users" color="cyan" />
+                </x-lnx-ui::statistics-panel>
+
                 <x-lnx-ui::statistics-panel :title="__('lnx-ui::design-gallery.statistics_empty')">
                     <x-slot:empty>
                         <flux:text>{{ __('lnx-ui::design-gallery.no_metrics') }}</flux:text>
