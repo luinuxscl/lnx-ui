@@ -9,15 +9,15 @@ Este procedimiento deja el paquete `luinuxscl/lnx-ui` publicado y consumible: pa
 
 ## Cuándo usar
 
-- Cuando hay cambios pendientes en el paquete `lnx-ui` (componentes Blade, `design-gallery`, traducciones, `resources/boost/skills`, etc.) y se quieren publicar.
+- Cuando hay cambios pendientes en el paquete `lnx-ui` (componentes Blade, `design-gallery`, traducciones, skills de Boost del propio paquete, etc.) y se quieren publicar.
 - Para decidir y aplicar el salto SemVer (`patch`/`minor`/`major`) y dejar el tag correspondiente.
 - Para propagar la versión nueva a las instancias de lnx que tienen el paquete como requerimiento.
 
 ## Cuándo NO usar
 
-- Para cambiar un componente dentro de una app consumidora: eso se hace superponiendo el componente en `resources/views/vendor/lnx-ui/` o editando el paquete; no es una publicación.
+- Para cambiar un componente dentro de una app consumidora: eso se hace superponiendo el componente en la carpeta de sobrescritura de vistas del proveedor o editando el paquete; no es una publicación.
 - Para actualizar dependencias ajenas al paquete (`composer.json`/`package.json` generales): usar Composer/npm sin este flujo.
-- Para el kit de agentes de lnx (`.ai/…`): usar `update-agent-kit`. Esta skill es del paquete de UI.
+- Para el kit de agentes del proyecto (`.ai`): usar `update-agent-kit`. Esta skill es del paquete de UI.
 
 ## Fuentes de verdad y checkout de desarrollo
 
