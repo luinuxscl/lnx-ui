@@ -8,7 +8,7 @@
         <nav aria-label="{{ __('lnx-ui::design-gallery.index') }}" class="rounded-xl border border-zinc-200 p-4 dark:border-zinc-800">
             <flux:heading level="2" size="sm">{{ __('lnx-ui::design-gallery.index') }}</flux:heading>
             <ul class="mt-3 grid grid-cols-2 gap-x-4 gap-y-1 font-mono text-sm sm:grid-cols-3 lg:grid-cols-4">
-                @foreach (['stat', 'stat-card', 'statistics-panel', 'trend-card', 'tool-card', 'placeholder-pattern', 'auth-header', 'auth-session-status', 'loading', 'empty-state', 'error-state', 'validation', 'actions-statuses', 'messaging'] as $anchor)
+                @foreach (['stat', 'stat-card', 'statistics-panel', 'trend-card', 'tool-card', 'resource-card', 'placeholder-pattern', 'auth-header', 'auth-session-status', 'loading', 'empty-state', 'error-state', 'validation', 'actions-statuses', 'messaging'] as $anchor)
                     <li><a href="#{{ $anchor }}" class="text-accent-content hover:underline">{{ $anchor }}</a></li>
                 @endforeach
             </ul>
@@ -94,6 +94,119 @@
                     <x-lnx-ui::tool-card class="col-span-12 sm:col-span-6 xl:col-span-4" :title="__('lnx-ui::design-gallery.chat')" :description="__('lnx-ui::design-gallery.chat_description')" icon="chat-bubble-left-right" color="violet" href="#" />
                     <x-lnx-ui::tool-card class="col-span-12 sm:col-span-6 xl:col-span-4" :title="__('lnx-ui::design-gallery.users')" :description="__('lnx-ui::design-gallery.users_description')" icon="users" color="blue" href="#" />
                     <x-lnx-ui::tool-card class="col-span-12 sm:col-span-6 xl:col-span-4" :title="__('lnx-ui::design-gallery.repository')" :description="__('lnx-ui::design-gallery.repository_description')" icon="code-bracket" external href="https://github.com/luinuxscl/lnx" />
+                </div>
+            </div>
+
+            {{-- resource-card --}}
+            <div id="resource-card" class="scroll-mt-24 space-y-3">
+                <flux:heading level="3"><code class="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-sm dark:bg-zinc-800">x-lnx-ui::resource-card</code></flux:heading>
+
+                <div class="space-y-4">
+                    <div>
+                        <flux:heading level="2">{{ __('lnx-ui::design-gallery.resources_heading') }}</flux:heading>
+                        <flux:text class="mt-1">{{ __('lnx-ui::design-gallery.resources_intro') }}</flux:text>
+                    </div>
+
+                    <div class="grid grid-cols-12 gap-4">
+                        <x-lnx-ui::resource-card
+                            class="col-span-12 md:col-span-6 xl:col-span-3"
+                            title="create-ui-component"
+                            :description="__('lnx-ui::design-gallery.resource_create_ui_component')"
+                            :eyebrow="__('lnx-ui::design-gallery.skill_eyebrow')"
+                            icon="sparkles"
+                            color="violet"
+                            href="#"
+                        >
+                            <x-slot:badges>
+                                <flux:badge color="amber" size="sm">{{ __('lnx-ui::design-gallery.advanced') }}</flux:badge>
+                                <flux:badge color="violet" size="sm" icon="clock">{{ __('lnx-ui::design-gallery.minutes', ['count' => 10]) }}</flux:badge>
+                            </x-slot:badges>
+                            <x-slot:tags>
+                                <flux:badge size="sm">{{ __('lnx-ui::design-gallery.tag_ui') }}</flux:badge>
+                                <flux:text class="text-xs">+8</flux:text>
+                            </x-slot:tags>
+                            <x-slot:meta>
+                                <span class="inline-flex items-center gap-1 text-xs">
+                                    <flux:icon icon="clock" variant="micro" class="size-3.5" aria-hidden="true" />
+                                    1mo
+                                </span>
+                            </x-slot:meta>
+                        </x-lnx-ui::resource-card>
+
+                        <x-lnx-ui::resource-card
+                            class="col-span-12 md:col-span-6 xl:col-span-3"
+                            title="expose-mcp-operation"
+                            :description="__('lnx-ui::design-gallery.resource_expose_mcp_operation')"
+                            :eyebrow="__('lnx-ui::design-gallery.skill_eyebrow')"
+                            icon="server-stack"
+                            color="blue"
+                            href="#"
+                        >
+                            <x-slot:badges>
+                                <flux:badge color="green" size="sm">{{ __('lnx-ui::design-gallery.intermediate') }}</flux:badge>
+                                <flux:badge color="blue" size="sm" icon="clock">{{ __('lnx-ui::design-gallery.minutes', ['count' => 30]) }}</flux:badge>
+                            </x-slot:badges>
+                            <x-slot:tags>
+                                <flux:badge size="sm">{{ __('lnx-ui::design-gallery.tag_mcp') }}</flux:badge>
+                                <flux:text class="text-xs">+5</flux:text>
+                            </x-slot:tags>
+                            <x-slot:meta>
+                                <span class="inline-flex items-center gap-1 text-xs">
+                                    <flux:icon icon="clock" variant="micro" class="size-3.5" aria-hidden="true" />
+                                    2mo
+                                </span>
+                            </x-slot:meta>
+                        </x-lnx-ui::resource-card>
+
+                        <x-lnx-ui::resource-card
+                            class="col-span-12 md:col-span-6 xl:col-span-3"
+                            title="lnx-ui-release"
+                            :description="__('lnx-ui::design-gallery.resource_release_lnx_ui')"
+                            href="#"
+                        >
+                            <x-slot:tags>
+                                <flux:badge size="sm">{{ __('lnx-ui::design-gallery.tag_package') }}</flux:badge>
+                                <flux:text class="text-xs">+3</flux:text>
+                            </x-slot:tags>
+                            <x-slot:meta>
+                                <span class="inline-flex items-center gap-1 text-xs">
+                                    <flux:icon icon="arrow-down-tray" variant="micro" class="size-3.5" aria-hidden="true" /> 2K
+                                </span>
+                                <span class="inline-flex items-center gap-1 text-xs">
+                                    <flux:icon icon="clock" variant="micro" class="size-3.5" aria-hidden="true" />
+                                    5mo
+                                </span>
+                            </x-slot:meta>
+                            <x-slot:actions>
+                                <div x-data="{ copied: false, copy(text) { navigator.clipboard?.writeText(text).catch(() => {}); this.copied = true; setTimeout(() => this.copied = false, 1500); } }">
+                                    <flux:button size="sm" variant="ghost" type="button" x-on:click="copy(@js('lnx-ui-release'))">
+                                        <span x-show="! copied">{{ __('lnx-ui::design-gallery.copy') }}</span>
+                                        <span x-show="copied" x-cloak>{{ __('lnx-ui::design-gallery.copied') }}</span>
+                                    </flux:button>
+                                </div>
+                            </x-slot:actions>
+                        </x-lnx-ui::resource-card>
+
+                        <x-lnx-ui::resource-card
+                            class="col-span-12 md:col-span-6 xl:col-span-3"
+                            title="brand-logos"
+                            :description="__('lnx-ui::design-gallery.resource_brand_logos')"
+                        >
+                            <x-slot:tags>
+                                <flux:badge size="sm">{{ __('lnx-ui::design-gallery.tag_brand') }}</flux:badge>
+                                <flux:text class="text-xs">+4</flux:text>
+                            </x-slot:tags>
+                            <x-slot:meta>
+                                <span class="inline-flex items-center gap-1 text-xs">
+                                    <flux:icon icon="arrow-down-tray" variant="micro" class="size-3.5" aria-hidden="true" /> 2K
+                                </span>
+                                <span class="inline-flex items-center gap-1 text-xs">
+                                    <flux:icon icon="clock" variant="micro" class="size-3.5" aria-hidden="true" />
+                                    4mo
+                                </span>
+                            </x-slot:meta>
+                        </x-lnx-ui::resource-card>
+                    </div>
                 </div>
             </div>
 
