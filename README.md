@@ -63,6 +63,8 @@ Las cadenas de la galería viven en el namespace `lnx-ui::design-gallery` (`lang
 | `x-lnx-ui::stat-card` | `label`, `value`, `icon`, `color` (envuelve `stat` en `flux:card`) |
 | `x-lnx-ui::statistics-panel` | `title`, `updated-label` y `updated-icon` (opcionales); slots de métricas, `actions`, `description` y `empty` |
 | `x-lnx-ui::trend-card` | `label`, `value`, `change`, `series` (array), `color` |
+| `x-lnx-ui::chart-card` | `label`, `value`; `description`, `change`, `trend`, `change-style` (`text` por defecto), `series` (array), `chart` (`line`/`bar`), `labels` (array), `color` |
+| `x-lnx-ui::metric-card` | `label`, `value`, `icon`; `description`, `change`, `trend`, `change-style` (`badge` por defecto), `color` |
 | `x-lnx-ui::tool-card` | `title`, `description`, `icon`, `href`, `color`, `external` |
 | `x-lnx-ui::resource-card` | `title`, `description`, `icon`, `eyebrow`, `href`, `external`, `color`; slots `badges`, `tags`, `meta`, `actions` |
 | `x-lnx-ui::placeholder-pattern` | `id` (opcional) |
@@ -70,6 +72,8 @@ Las cadenas de la galería viven en el namespace `lnx-ui::design-gallery` (`lang
 | `x-lnx-ui::auth-session-status` | `status` |
 
 `color` acepta `accent` (predeterminado), `violet`, `cyan`, `rose`, `emerald`, `blue` y `amber`.
+
+En `chart-card` y `metric-card`, la variación (`change`) se colorea en verde o rojo según su signo; `trend` (`up`/`down`) lo sobrescribe. El contenedor asigna el ancho, normalmente `col-span-12 md:col-span-6 xl:col-span-3`.
 
 ## Versionado
 
