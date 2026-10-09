@@ -15,7 +15,12 @@ it('renders the shared design gallery with component anchors', function () {
     expect($html)
         ->toContain('id="stat"')
         ->toContain('id="trend-card"')
+        ->toContain('id="summary-card"')
+        ->toContain('id="media-cell"')
+        ->toContain('id="chip"')
+        ->toContain('id="data-table"')
         ->toContain('x-lnx-ui::stat')
+        ->toContain('x-lnx-ui::data-table')
         ->toContain('Shared library (lnx-ui)')
         ->toContain('Design gallery');
 });
