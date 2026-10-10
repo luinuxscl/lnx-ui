@@ -99,3 +99,9 @@ it('omits the optional data table sections when no slots are given', function ()
         ->toContain('Only')
         ->toContain('data-flux-table');
 });
+
+it('forwards the container class to the table scroll container', function () {
+    $html = Blade::render('<x-lnx-ui::data-table container-class="max-h-96 overflow-auto"><flux:table.rows><flux:table.row><flux:table.cell>Only</flux:table.cell></flux:table.row></flux:table.rows></x-lnx-ui::data-table>');
+
+    expect($html)->toContain('max-h-96 overflow-auto');
+});
