@@ -15,7 +15,22 @@ it('renders the stat card wrapping the stat component', function () {
 
     expect($html)
         ->toContain('Users')
-        ->toContain('1,234');
+        ->toContain('1,234')
+        ->not->toContain('<a ');
+});
+
+it('turns the stat card into a link and marks the active filter', function () {
+    $link = Blade::render('<x-lnx-ui::stat-card label="Users" value="1,234" icon="users" href="/users" />');
+    $active = Blade::render('<x-lnx-ui::stat-card label="Users" value="1,234" icon="users" href="/users" active />');
+
+    expect($link)
+        ->toContain('href="/users"')
+        ->not->toContain('aria-current');
+
+    expect($active)
+        ->toContain('href="/users"')
+        ->toContain('aria-current="page"')
+        ->toContain('ring-accent/40');
 });
 
 it('renders the statistics panel with its title, accessible group and slot', function () {
