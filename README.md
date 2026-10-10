@@ -73,9 +73,26 @@ Las cadenas de la galería viven en el namespace `lnx-ui::design-gallery` (`lang
 | `x-lnx-ui::chip` | `label`, `icon`, `color`; el slot es el fallback |
 | `x-lnx-ui::media-cell` | `title`, `description`, `icon`, `image`, `href`, `color` |
 | `x-lnx-ui::summary-card` | `label`, `value`, `caption`, `change`, `icon`, `color` |
+| `x-lnx-ui::page-header` | `title`, `subtitle`, `breadcrumbs` (array de ancestros `['label','href']`), `icon`, `color`; slot `actions` |
 | `x-lnx-ui::data-table` | `title` (opcional), `description`, `filters-label`, `paginate`, `table-class`, `container-class`; slots `filters`, `toolbar`, `actions` y el contenido de la tabla |
 
 `color` acepta `accent` (predeterminado), `violet`, `cyan`, `rose`, `emerald`, `blue` y `amber`.
+
+`page-header` es el encabezado estándar de una página: un solo `<h1>` con el título, un subtítulo opcional, un trail de breadcrumbs (solo ancestros; la página actual es el título) y un badge de icono opcional. Las acciones de la página van en el slot `actions`, alineadas a la derecha:
+
+```blade
+<x-lnx-ui::page-header
+    :title="__('Users')"
+    :subtitle="__('Manage accounts, roles and invitations.')"
+    icon="users"
+    color="blue"
+    :breadcrumbs="[['label' => __('Settings'), 'href' => route('profile.edit')]]"
+>
+    <x-slot:actions>
+        <flux:button variant="primary" icon="plus">{{ __('Invite user') }}</flux:button>
+    </x-slot:actions>
+</x-lnx-ui::page-header>
+```
 
 `data-table` renderiza el `title` solo si se entrega: sin título ni slot `filters`, desaparece la fila superior. `container-class` se reenvía al contenedor de scroll de `flux:table`, útil para fijar el encabezado (por ejemplo `container-class="max-h-[70vh]"` junto con `sticky` en `flux:table.columns`).
 
