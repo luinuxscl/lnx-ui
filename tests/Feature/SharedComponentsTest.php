@@ -121,3 +121,34 @@ it('renders the auth session status only when a status exists', function () {
     expect($withStatus)->toContain('Sent!');
     expect(trim($withoutStatus))->toBe('');
 });
+
+it('renders the page header with title, subtitle, breadcrumbs and actions', function () {
+    $html = Blade::render(<<<'BLADE'
+        <x-lnx-ui::page-header
+            title="Users"
+            subtitle="Manage accounts."
+            icon="users"
+            color="blue"
+            :breadcrumbs="[['label' => 'Home', 'href' => '/'], ['label' => 'Admin', 'href' => '/admin']]"
+        >
+            <x-slot:actions><button>Export</button></x-slot:actions>
+        </x-lnx-ui::page-header>
+    BLADE);
+
+    expect($html)
+        ->toContain('Users')
+        ->toContain('Manage accounts.')
+        ->toContain('Home')
+        ->toContain('href="/admin"')
+        ->toContain('wire:navigate')
+        ->toContain('Export')
+        ->toContain('<h1');
+});
+
+it('omits the breadcrumb trail when none is given', function () {
+    $html = Blade::render('<x-lnx-ui::page-header title="Users" />');
+
+    expect($html)
+        ->toContain('Users')
+        ->not->toContain('wire:navigate');
+});
