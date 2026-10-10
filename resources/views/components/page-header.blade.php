@@ -41,7 +41,13 @@
                 </flux:breadcrumbs>
             @endif
 
-            <flux:heading level="1">{{ $title }}</flux:heading>
+            <div class="flex flex-wrap items-center gap-3">
+                <flux:heading level="1">{{ $title }}</flux:heading>
+
+                @if (isset($meta))
+                    {{ $meta }}
+                @endif
+            </div>
 
             @if (filled($subtitle))
                 <flux:text class="mt-1">{{ $subtitle }}</flux:text>
