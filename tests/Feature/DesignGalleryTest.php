@@ -19,8 +19,10 @@ it('renders the shared design gallery with component anchors', function () {
         ->toContain('id="media-cell"')
         ->toContain('id="chip"')
         ->toContain('id="data-table"')
+        ->toContain('id="page-header"')
         ->toContain('x-lnx-ui::stat')
         ->toContain('x-lnx-ui::data-table')
+        ->toContain('x-lnx-ui::page-header')
         ->toContain('Shared library (lnx-ui)')
         ->toContain('Design gallery');
 });

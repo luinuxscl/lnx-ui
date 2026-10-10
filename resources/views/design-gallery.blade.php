@@ -8,7 +8,7 @@
         <nav aria-label="{{ __('lnx-ui::design-gallery.index') }}" class="rounded-xl border border-zinc-200 p-4 dark:border-zinc-800">
             <flux:heading level="2" size="sm">{{ __('lnx-ui::design-gallery.index') }}</flux:heading>
             <ul class="mt-3 grid grid-cols-2 gap-x-4 gap-y-1 font-mono text-sm sm:grid-cols-3 lg:grid-cols-4">
-                @foreach (['stat', 'stat-card', 'statistics-panel', 'trend-card', 'chart-card', 'metric-card', 'summary-card', 'tool-card', 'resource-card', 'media-cell', 'chip', 'data-table', 'placeholder-pattern', 'auth-header', 'auth-session-status', 'loading', 'empty-state', 'error-state', 'validation', 'actions-statuses', 'messaging'] as $anchor)
+                @foreach (['page-header', 'stat', 'stat-card', 'statistics-panel', 'trend-card', 'chart-card', 'metric-card', 'summary-card', 'tool-card', 'resource-card', 'media-cell', 'chip', 'data-table', 'placeholder-pattern', 'auth-header', 'auth-session-status', 'loading', 'empty-state', 'error-state', 'validation', 'actions-statuses', 'messaging'] as $anchor)
                     <li><a href="#{{ $anchor }}" class="text-accent-content hover:underline">{{ $anchor }}</a></li>
                 @endforeach
             </ul>
@@ -18,6 +18,32 @@
             <div>
                 <flux:heading level="2">{{ __('lnx-ui::design-gallery.library_title') }}</flux:heading>
                 <flux:text class="mt-1">{{ __('lnx-ui::design-gallery.library_intro') }}</flux:text>
+            </div>
+
+            {{-- page-header --}}
+            <div id="page-header" class="scroll-mt-24 space-y-3">
+                <flux:heading level="3"><code class="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-sm dark:bg-zinc-800">x-lnx-ui::page-header</code></flux:heading>
+
+                <x-lnx-ui::page-header
+                    :title="__('lnx-ui::design-gallery.page_header_title')"
+                    :subtitle="__('lnx-ui::design-gallery.page_header_subtitle')"
+                    icon="users"
+                    color="blue"
+                    :breadcrumbs="[
+                        ['label' => __('lnx-ui::design-gallery.page_header_home'), 'href' => '#'],
+                        ['label' => __('lnx-ui::design-gallery.page_header_section'), 'href' => '#'],
+                    ]"
+                >
+                    <x-slot:actions>
+                        <flux:button size="sm" icon="arrow-down-tray">{{ __('lnx-ui::design-gallery.page_header_export') }}</flux:button>
+                        <flux:button size="sm" variant="primary" icon="plus">{{ __('lnx-ui::design-gallery.page_header_add') }}</flux:button>
+                    </x-slot:actions>
+                </x-lnx-ui::page-header>
+
+                <x-lnx-ui::page-header
+                    :title="__('lnx-ui::design-gallery.page_header_title')"
+                    :subtitle="__('lnx-ui::design-gallery.page_header_subtitle')"
+                />
             </div>
 
             {{-- stat --}}
