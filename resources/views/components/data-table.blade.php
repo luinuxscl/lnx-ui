@@ -4,6 +4,7 @@
     'filtersLabel' => null,
     'paginate' => null,
     'tableClass' => null,
+    'containerClass' => null,
 ])
 
 @php
@@ -53,7 +54,7 @@
         'border-zinc-200 px-4 pb-4 sm:px-6 sm:pb-6 dark:border-zinc-800',
         'border-t' => $hasSeparator,
     ])>
-        <flux:table :paginate="$paginate" :class="$tableClasses">
+        <flux:table :paginate="$paginate" :class="$tableClasses" :container:class="$containerClass">
             {{ $slot }}
         </flux:table>
     </div>

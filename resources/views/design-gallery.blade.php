@@ -313,6 +313,7 @@
                     :description="__('lnx-ui::design-gallery.directory_description')"
                     :filters-label="__('lnx-ui::design-gallery.table_filter')"
                     table-class="min-w-[64rem]"
+                    container-class="max-h-96 overflow-auto"
                 >
                     <x-slot:filters>
                         <div class="w-full sm:w-52">
@@ -368,7 +369,7 @@
                         <flux:button variant="primary" icon="plus">{{ __('lnx-ui::design-gallery.add_resource') }}</flux:button>
                     </x-slot:actions>
 
-                    <flux:table.columns>
+                    <flux:table.columns sticky class="bg-white dark:bg-zinc-900">
                         <flux:table.column class="w-10"><flux:checkbox :aria-label="__('lnx-ui::design-gallery.col_item')" /></flux:table.column>
                         <flux:table.column class="w-72">{{ __('lnx-ui::design-gallery.col_item') }}</flux:table.column>
                         <flux:table.column>{{ __('lnx-ui::design-gallery.col_category') }}</flux:table.column>
