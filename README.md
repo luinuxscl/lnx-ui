@@ -70,8 +70,14 @@ Las cadenas de la galería viven en el namespace `lnx-ui::design-gallery` (`lang
 | `x-lnx-ui::placeholder-pattern` | `id` (opcional) |
 | `x-lnx-ui::auth-header` | `title`, `description` |
 | `x-lnx-ui::auth-session-status` | `status` |
+| `x-lnx-ui::chip` | `label`, `icon`, `color`; el slot es el fallback |
+| `x-lnx-ui::media-cell` | `title`, `description`, `icon`, `image`, `href`, `color` |
+| `x-lnx-ui::summary-card` | `label`, `value`, `caption`, `change`, `icon`, `color` |
+| `x-lnx-ui::data-table` | `title` (opcional), `description`, `filters-label`, `paginate`, `table-class`, `container-class`; slots `filters`, `toolbar`, `actions` y el contenido de la tabla |
 
 `color` acepta `accent` (predeterminado), `violet`, `cyan`, `rose`, `emerald`, `blue` y `amber`.
+
+`data-table` renderiza el `title` solo si se entrega: sin título ni slot `filters`, desaparece la fila superior. `container-class` se reenvía al contenedor de scroll de `flux:table`, útil para fijar el encabezado (por ejemplo `container-class="max-h-[70vh]"` junto con `sticky` en `flux:table.columns`).
 
 En `chart-card` y `metric-card`, la variación (`change`) se colorea en verde o rojo según su signo; `trend` (`up`/`down`) lo sobrescribe. El contenedor asigna el ancho, normalmente `col-span-12 md:col-span-6 xl:col-span-3`.
 
