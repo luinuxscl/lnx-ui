@@ -42,6 +42,14 @@
                     <x-lnx-ui::stat-card class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('lnx-ui::design-gallery.products')" value="1.423k" icon="shopping-cart" color="rose" />
                     <x-lnx-ui::stat-card class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('lnx-ui::design-gallery.revenue')" value="$9745" icon="currency-dollar" color="emerald" />
                 </div>
+
+                {{-- Interactive variant: pass href to turn the card into a link; active marks the current filter. --}}
+                <div class="grid grid-cols-12 gap-4">
+                    <x-lnx-ui::stat-card class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('lnx-ui::design-gallery.sales')" value="230k" icon="chart-pie" color="violet" active href="#" />
+                    <x-lnx-ui::stat-card class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('lnx-ui::design-gallery.customers')" value="8.549k" icon="users" color="cyan" href="#" />
+                    <x-lnx-ui::stat-card class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('lnx-ui::design-gallery.products')" value="1.423k" icon="shopping-cart" color="rose" href="#" />
+                    <x-lnx-ui::stat-card class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('lnx-ui::design-gallery.revenue')" value="$9745" icon="currency-dollar" color="emerald" href="#" />
+                </div>
             </div>
 
             {{-- statistics-panel --}}
