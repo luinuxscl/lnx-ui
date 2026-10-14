@@ -34,6 +34,8 @@ return [
     'weekly_report' => 'Informe semanal',
     'total_profit' => 'Beneficio total',
     'total_sales' => 'Ventas totales',
+    'metric_help' => 'Comparado con el mismo periodo de la semana pasada.',
+    'chart_help' => 'Incluye registros confirmados y pendientes.',
     'weekdays' => ['L', 'M', 'X', 'J', 'V', 'S', 'D'],
     'chat_description' => 'Mantén conversaciones interactivas con el asistente de IA.',
     'users_description' => 'Gestiona cuentas, roles e invitaciones.',

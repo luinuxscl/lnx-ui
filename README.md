@@ -63,8 +63,8 @@ Las cadenas de la galería viven en el namespace `lnx-ui::design-gallery` (`lang
 | `x-lnx-ui::stat-card` | `label`, `value`, `icon`, `color` (envuelve `stat` en `flux:card`) |
 | `x-lnx-ui::statistics-panel` | `title`, `updated-label` y `updated-icon` (opcionales); slots de métricas, `actions`, `description` y `empty` |
 | `x-lnx-ui::trend-card` | `label`, `value`, `change`, `series` (array), `color` |
-| `x-lnx-ui::chart-card` | `label`, `value`; `description`, `change`, `trend`, `change-style` (`text` por defecto), `series` (array), `chart` (`line`/`bar`), `labels` (array), `color` |
-| `x-lnx-ui::metric-card` | `label`, `value`, `icon`; `description`, `change`, `trend`, `change-style` (`badge` por defecto), `color` |
+| `x-lnx-ui::chart-card` | `label`, `value`; `description`, `help`, `change`, `trend`, `change-style` (`text` por defecto), `series` (array), `chart` (`line`/`bar`), `labels` (array), `color` |
+| `x-lnx-ui::metric-card` | `label`, `value`, `icon`; `description`, `help`, `change`, `trend`, `change-style` (`badge` por defecto), `color` |
 | `x-lnx-ui::tool-card` | `title`, `description`, `icon`, `href`, `color`, `external` |
 | `x-lnx-ui::resource-card` | `title`, `description`, `icon`, `eyebrow`, `href`, `external`, `color`; slots `badges`, `tags`, `meta`, `actions` |
 | `x-lnx-ui::placeholder-pattern` | `id` (opcional) |
@@ -97,6 +97,12 @@ Las cadenas de la galería viven en el namespace `lnx-ui::design-gallery` (`lang
 `data-table` renderiza el `title` solo si se entrega: sin título ni slot `filters`, desaparece la fila superior. `container-class` se reenvía al contenedor de scroll de `flux:table`, útil para fijar el encabezado (por ejemplo `container-class="max-h-[70vh]"` junto con `sticky` en `flux:table.columns`).
 
 En `chart-card` y `metric-card`, la variación (`change`) se colorea en verde o rojo según su signo; `trend` (`up`/`down`) lo sobrescribe. El contenedor asigna el ancho, normalmente `col-span-12 md:col-span-6 xl:col-span-3`.
+
+En `chart-card` y `metric-card`, `help` añade un texto de ayuda inline bajo la descripción para explicar conceptos poco obvios. Cuando se entrega, la tarjeta se expone como grupo accesible (`role="group"`) asociado a la etiqueta y a la ayuda con `aria-labelledby`/`aria-describedby`; sin `help`, el render es idéntico al anterior:
+
+```blade
+<x-lnx-ui::metric-card :label="__('Total sales')" value="24.67k" icon="shopping-bag" :help="__('Includes confirmed and pending records.')" />
+```
 
 ## Versionado
 

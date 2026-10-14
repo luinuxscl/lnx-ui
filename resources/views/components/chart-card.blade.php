@@ -2,6 +2,7 @@
     'label',
     'value',
     'description' => null,
+    'help' => null,
     'change' => null,
     'trend' => null,
     'changeStyle' => 'text',
@@ -27,6 +28,12 @@
     $hasChart = $isBar ? count($values) >= 1 : count($values) >= 2;
 
     $chartId = uniqid('chart-card-', true);
+    $hasHelp = filled($help);
+    $labelId = $hasHelp ? uniqid('lnx-chart-label-', true) : null;
+    $helpId = $hasHelp ? uniqid('lnx-chart-help-', true) : null;
+    $groupAttributes = $hasHelp
+        ? ['role' => 'group', 'aria-labelledby' => $labelId, 'aria-describedby' => $helpId]
+        : [];
     $path = null;
     $area = null;
     $bars = [];
@@ -73,12 +80,19 @@
         : 'bg-emerald-100 text-emerald-600 dark:bg-emerald-500/15 dark:text-emerald-400';
 @endphp
 
-<flux:card {{ $attributes->class('flex h-full min-w-0 flex-col gap-4') }}>
+<flux:card {{ $attributes->class('flex h-full min-w-0 flex-col gap-4')->merge($groupAttributes) }}>
     <div class="min-w-0">
-        <flux:heading level="3">{{ $label }}</flux:heading>
+        <flux:heading level="3" :id="$labelId">{{ $label }}</flux:heading>
 
         @if (filled($description))
             <flux:text class="mt-1 text-sm">{{ $description }}</flux:text>
+        @endif
+
+        @if ($hasHelp)
+            <p id="{{ $helpId }}" class="mt-1 flex items-start gap-1 text-xs text-zinc-500 dark:text-zinc-400">
+                <flux:icon icon="information-circle" variant="micro" class="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />
+                <span>{{ $help }}</span>
+            </p>
         @endif
     </div>
 

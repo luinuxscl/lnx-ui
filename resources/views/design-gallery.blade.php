@@ -129,6 +129,7 @@
                     <x-lnx-ui::chart-card class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('lnx-ui::design-gallery.sales')" :description="__('lnx-ui::design-gallery.sales_last_year')" value="175k" change="-16.2%" :series="[28, 16, 34, 42, 51, 75, 78, 80, 72, 21]" chart="line" color="emerald" />
                     <x-lnx-ui::chart-card class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('lnx-ui::design-gallery.revenue_growth')" :description="__('lnx-ui::design-gallery.weekly_report')" value="$4,673" change="+15.2%" :series="[30, 45, 25, 55, 60, 95, 70]" chart="bar" :labels="__('lnx-ui::design-gallery.weekdays')" color="emerald" />
                     <x-lnx-ui::chart-card class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('lnx-ui::design-gallery.sales')" :description="__('lnx-ui::design-gallery.last_week')" value="230k" change="+3.2%" change-style="badge" :series="[]" color="amber" />
+                    <x-lnx-ui::chart-card class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('lnx-ui::design-gallery.sales_profit')" :description="__('lnx-ui::design-gallery.last_week')" :help="__('lnx-ui::design-gallery.chart_help')" value="175k" change="+15.2%" :series="[28, 16, 34, 42, 51, 75, 78, 80, 72, 21]" chart="line" color="emerald" />
                 </div>
             </div>
 
@@ -140,6 +141,7 @@
                     <x-lnx-ui::metric-card class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('lnx-ui::design-gallery.total_profit')" :description="__('lnx-ui::design-gallery.last_week')" value="1.28k" change="-12.2%" icon="banknotes" color="rose" />
                     <x-lnx-ui::metric-card class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('lnx-ui::design-gallery.total_sales')" :description="__('lnx-ui::design-gallery.last_week')" value="24.67k" change="+24.5%" icon="shopping-bag" color="emerald" />
                     <x-lnx-ui::metric-card class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('lnx-ui::design-gallery.customers')" :description="__('lnx-ui::design-gallery.last_week')" value="8.549k" change="+4.1%" change-style="text" icon="users" color="blue" />
+                    <x-lnx-ui::metric-card class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('lnx-ui::design-gallery.revenue')" :description="__('lnx-ui::design-gallery.last_week')" :help="__('lnx-ui::design-gallery.metric_help')" value="24.67k" change="+24.5%" icon="shopping-bag" color="violet" />
                 </div>
             </div>
 

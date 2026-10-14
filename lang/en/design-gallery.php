@@ -34,6 +34,8 @@ return [
     'weekly_report' => 'Weekly Report',
     'total_profit' => 'Total Profit',
     'total_sales' => 'Total Sales',
+    'metric_help' => 'Compared with the same period last week.',
+    'chart_help' => 'Includes confirmed and pending records.',
     'weekdays' => ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
     'chat_description' => 'Have interactive conversations with the AI assistant.',
     'users_description' => 'Manage accounts, roles, and invitations.',

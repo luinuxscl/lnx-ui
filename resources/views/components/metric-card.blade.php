@@ -3,6 +3,7 @@
     'value',
     'icon',
     'description' => null,
+    'help' => null,
     'change' => null,
     'trend' => null,
     'changeStyle' => 'badge',
@@ -28,18 +29,32 @@
     $changeBadgeTone = $direction === 'down'
         ? 'bg-rose-100 text-rose-600 dark:bg-rose-500/15 dark:text-rose-400'
         : 'bg-emerald-100 text-emerald-600 dark:bg-emerald-500/15 dark:text-emerald-400';
+
+    $hasHelp = filled($help);
+    $labelId = $hasHelp ? uniqid('lnx-metric-label-', true) : null;
+    $helpId = $hasHelp ? uniqid('lnx-metric-help-', true) : null;
+    $groupAttributes = $hasHelp
+        ? ['role' => 'group', 'aria-labelledby' => $labelId, 'aria-describedby' => $helpId]
+        : [];
 @endphp
 
-<flux:card {{ $attributes->class('flex h-full min-w-0 flex-col gap-3') }}>
+<flux:card {{ $attributes->class('flex h-full min-w-0 flex-col gap-3')->merge($groupAttributes) }}>
     <span @class(['flex size-10 shrink-0 items-center justify-center rounded-md', $tone]) aria-hidden="true">
         <flux:icon :icon="$icon" class="size-5" />
     </span>
 
     <div class="min-w-0">
-        <flux:heading level="3">{{ $label }}</flux:heading>
+        <flux:heading level="3" :id="$labelId">{{ $label }}</flux:heading>
 
         @if (filled($description))
             <flux:text class="mt-1 text-sm">{{ $description }}</flux:text>
+        @endif
+
+        @if ($hasHelp)
+            <p id="{{ $helpId }}" class="mt-1 flex items-start gap-1 text-xs text-zinc-500 dark:text-zinc-400">
+                <flux:icon icon="information-circle" variant="micro" class="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />
+                <span>{{ $help }}</span>
+            </p>
         @endif
     </div>
 
