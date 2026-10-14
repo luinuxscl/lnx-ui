@@ -57,3 +57,28 @@ it('omits the change when none is given', function () {
         ->not->toContain('text-emerald-600')
         ->not->toContain('text-rose-600');
 });
+
+it('renders inline help and wires it for assistive technology', function () {
+    $html = Blade::render('<x-lnx-ui::chart-card label="Sales" value="175k" :series="[10, 20, 30]" help="Includes pending records." />');
+
+    preg_match('/aria-labelledby="([^"]+)"/', $html, $label);
+    preg_match('/aria-describedby="([^"]+)"/', $html, $help);
+
+    expect($html)
+        ->toContain('role="group"')
+        ->toContain('Includes pending records.');
+
+    expect($label[1] ?? null)->not->toBeNull();
+    expect($help[1] ?? null)->not->toBeNull();
+    expect($html)->toContain('id="'.$label[1].'"');
+    expect($html)->toContain('id="'.$help[1].'"');
+});
+
+it('omits the help markup when no help is given', function () {
+    $html = Blade::render('<x-lnx-ui::chart-card label="Sales" value="175k" :series="[10, 20, 30]" />');
+
+    expect($html)
+        ->not->toContain('role="group"')
+        ->not->toContain('aria-describedby')
+        ->not->toContain('id="lnx-');
+});
