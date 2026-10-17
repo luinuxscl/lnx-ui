@@ -111,3 +111,11 @@ it('lets the table wrapper shrink so hidden columns reduce the width', function 
 
     expect($html)->toContain('min-w-0');
 });
+
+it('omits the toolbar row when its slots are empty', function () {
+    $html = Blade::render('<x-lnx-ui::data-table title="Directory"><x-slot:actions>   </x-slot:actions><flux:table.rows><flux:table.row><flux:table.cell>Only</flux:table.cell></flux:table.row></flux:table.rows></x-lnx-ui::data-table>');
+
+    expect($html)
+        ->toContain('Directory')
+        ->not->toContain('sm:justify-between');
+});
