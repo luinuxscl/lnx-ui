@@ -8,8 +8,9 @@
 ])
 
 @php
-    $hasHeader = filled($title) || isset($filters);
-    $hasToolbar = isset($toolbar) || isset($actions);
+    $hasFilters = isset($filters) && $filters->hasActualContent();
+    $hasHeader = filled($title) || $hasFilters;
+    $hasToolbar = (isset($toolbar) && $toolbar->hasActualContent()) || (isset($actions) && $actions->hasActualContent());
     $hasSeparator = $hasHeader || $hasToolbar;
     $tableClasses = trim('w-full '.(string) $tableClass);
 @endphp
@@ -27,13 +28,13 @@
                 </div>
             @endif
 
-            @isset($filters)
+            @if ($hasFilters)
                 @if (filled($filtersLabel))
                     <flux:text class="text-xs font-medium uppercase tracking-wide text-zinc-500 dark:text-zinc-400">{{ $filtersLabel }}</flux:text>
                 @endif
 
                 <div class="flex flex-wrap items-end gap-4">{{ $filters }}</div>
-            @endisset
+            @endif
         </div>
     @endif
 
