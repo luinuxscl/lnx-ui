@@ -105,3 +105,9 @@ it('forwards the container class to the table scroll container', function () {
 
     expect($html)->toContain('max-h-96 overflow-auto');
 });
+
+it('lets the table wrapper shrink so hidden columns reduce the width', function () {
+    $html = Blade::render('<x-lnx-ui::data-table><flux:table.rows><flux:table.row><flux:table.cell>Only</flux:table.cell></flux:table.row></flux:table.rows></x-lnx-ui::data-table>');
+
+    expect($html)->toContain('min-w-0');
+});

@@ -336,8 +336,6 @@
                     :title="__('lnx-ui::design-gallery.directory_title')"
                     :description="__('lnx-ui::design-gallery.directory_description')"
                     :filters-label="__('lnx-ui::design-gallery.table_filter')"
-                    table-class="min-w-[64rem]"
-                    container-class="max-h-96 overflow-auto"
                 >
                     <x-slot:filters>
                         <div class="w-full sm:w-52">
@@ -393,14 +391,15 @@
                         <flux:button variant="primary" icon="plus">{{ __('lnx-ui::design-gallery.add_resource') }}</flux:button>
                     </x-slot:actions>
 
-                    <flux:table.columns sticky class="bg-white dark:bg-zinc-900">
-                        <flux:table.column class="w-10"><flux:checkbox :aria-label="__('lnx-ui::design-gallery.col_item')" /></flux:table.column>
-                        <flux:table.column class="w-72">{{ __('lnx-ui::design-gallery.col_item') }}</flux:table.column>
-                        <flux:table.column>{{ __('lnx-ui::design-gallery.col_category') }}</flux:table.column>
-                        <flux:table.column>{{ __('lnx-ui::design-gallery.col_stock') }}</flux:table.column>
-                        <flux:table.column>{{ __('lnx-ui::design-gallery.col_reference') }}</flux:table.column>
-                        <flux:table.column>{{ __('lnx-ui::design-gallery.col_price') }}</flux:table.column>
-                        <flux:table.column>{{ __('lnx-ui::design-gallery.col_quantity') }}</flux:table.column>
+                    {{-- No forced min-width: on narrow screens columns are hidden by breakpoint so the table always fits without horizontal scroll. --}}
+                    <flux:table.columns>
+                        <flux:table.column class="w-10 max-sm:hidden"><flux:checkbox :aria-label="__('lnx-ui::design-gallery.col_item')" /></flux:table.column>
+                        <flux:table.column class="xl:w-72">{{ __('lnx-ui::design-gallery.col_item') }}</flux:table.column>
+                        <flux:table.column class="max-sm:hidden">{{ __('lnx-ui::design-gallery.col_category') }}</flux:table.column>
+                        <flux:table.column class="max-lg:hidden">{{ __('lnx-ui::design-gallery.col_stock') }}</flux:table.column>
+                        <flux:table.column class="max-md:hidden">{{ __('lnx-ui::design-gallery.col_reference') }}</flux:table.column>
+                        <flux:table.column class="max-xl:hidden">{{ __('lnx-ui::design-gallery.col_price') }}</flux:table.column>
+                        <flux:table.column class="max-xl:hidden">{{ __('lnx-ui::design-gallery.col_quantity') }}</flux:table.column>
                         <flux:table.column>{{ __('lnx-ui::design-gallery.col_status') }}</flux:table.column>
                         <flux:table.column align="end" class="w-20">{{ __('lnx-ui::design-gallery.col_actions') }}</flux:table.column>
                     </flux:table.columns>
@@ -408,17 +407,17 @@
                     <flux:table.rows>
                         @foreach ($people as $person)
                             <flux:table.row :key="$person['name']">
-                                <flux:table.cell><flux:checkbox :aria-label="$person['name']" /></flux:table.cell>
+                                <flux:table.cell class="max-sm:hidden"><flux:checkbox :aria-label="$person['name']" /></flux:table.cell>
                                 <flux:table.cell>
                                     <x-lnx-ui::media-cell :title="$person['name']" :description="$person['role']" icon="user" :color="$person['category']['color']" />
                                 </flux:table.cell>
-                                <flux:table.cell>
+                                <flux:table.cell class="max-sm:hidden">
                                     <x-lnx-ui::chip :label="$person['category']['label']" :icon="$person['category']['icon']" :color="$person['category']['color']" />
                                 </flux:table.cell>
-                                <flux:table.cell><flux:switch :checked="$person['active']" :aria-label="__('lnx-ui::design-gallery.col_stock')" /></flux:table.cell>
-                                <flux:table.cell>{{ $person['reference'] }}</flux:table.cell>
-                                <flux:table.cell>{{ $person['price'] }}</flux:table.cell>
-                                <flux:table.cell>{{ $person['quantity'] }}</flux:table.cell>
+                                <flux:table.cell class="max-lg:hidden"><flux:switch :checked="$person['active']" :aria-label="__('lnx-ui::design-gallery.col_stock')" /></flux:table.cell>
+                                <flux:table.cell class="max-md:hidden">{{ $person['reference'] }}</flux:table.cell>
+                                <flux:table.cell class="max-xl:hidden">{{ $person['price'] }}</flux:table.cell>
+                                <flux:table.cell class="max-xl:hidden">{{ $person['quantity'] }}</flux:table.cell>
                                 <flux:table.cell><flux:badge :color="$person['status']['color']" size="sm">{{ $person['status']['label'] }}</flux:badge></flux:table.cell>
                                 <flux:table.cell align="end">
                                     <div class="flex items-center justify-end gap-1">

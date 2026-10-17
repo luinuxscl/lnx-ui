@@ -50,8 +50,13 @@
         </div>
     @endif
 
+    {{--
+        min-w-0 lets this wrapper shrink below its content, so columns hidden by
+        breakpoint actually reduce the table width instead of forcing an
+        unreachable horizontal overflow that the card would clip.
+    --}}
     <div @class([
-        'border-zinc-200 px-4 pb-4 sm:px-6 sm:pb-6 dark:border-zinc-800',
+        'min-w-0 border-zinc-200 px-4 pb-4 sm:px-6 sm:pb-6 dark:border-zinc-800',
         'border-t' => $hasSeparator,
     ])>
         <flux:table :paginate="$paginate" :class="$tableClasses" :container:class="$containerClass">
