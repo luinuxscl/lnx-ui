@@ -29,10 +29,6 @@
                     :subtitle="__('lnx-ui::design-gallery.page_header_subtitle')"
                     icon="users"
                     color="blue"
-                    :breadcrumbs="[
-                        ['label' => __('lnx-ui::design-gallery.page_header_home'), 'href' => '#'],
-                        ['label' => __('lnx-ui::design-gallery.page_header_section'), 'href' => '#'],
-                    ]"
                 >
                     <x-slot:actions>
                         <flux:button size="sm" icon="arrow-down-tray">{{ __('lnx-ui::design-gallery.page_header_export') }}</flux:button>
