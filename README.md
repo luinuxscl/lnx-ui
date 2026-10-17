@@ -99,7 +99,9 @@ Los componentes de correo (`mail-list-item`, `attachment-card`, `presence-list`,
 </x-lnx-ui::page-header>
 ```
 
-`data-table` renderiza el `title` solo si se entrega: sin título ni slot `filters`, desaparece la fila superior. `container-class` se reenvía al contenedor de scroll de `flux:table`, útil para fijar el encabezado (por ejemplo `container-class="max-h-[70vh]"` junto con `sticky` en `flux:table.columns`).
+`data-table` renderiza el `title` solo si se entrega: sin título ni slot `filters`, desaparece la fila superior. `container-class` se reenvía al contenedor de `flux:table` (el que envuelve la tabla, el pie y la paginación), útil para acotar la altura y fijar el encabezado (por ejemplo `container-class="max-h-[70vh] overflow-auto"` junto con `sticky` en `flux:table.columns`). No lo uses para el ancho.
+
+En pantallas estrechas **no fuerces un ancho mínimo con `table-class="min-w-[…]"`**: crea un scroll horizontal sin barra visible que la tarjeta recorta y deja columnas inalcanzables. En su lugar, **oculta columnas por breakpoint** (`max-sm:hidden`, `max-md:hidden`, `max-lg:hidden`, `max-xl:hidden`) en la columna de `flux:table.columns` y en su celda, de modo que la tabla siempre quepa sin scroll horizontal. La galería (`#data-table`) es el ejemplo de referencia. Si de verdad necesitas un suelo de ancho, que sea responsivo y coherente con las columnas que ocultas.
 
 En `chart-card` y `metric-card`, la variación (`change`) se colorea en verde o rojo según su signo; `trend` (`up`/`down`) lo sobrescribe. El contenedor asigna el ancho, normalmente `col-span-12 md:col-span-6 xl:col-span-3`.
 
