@@ -27,7 +27,7 @@
 
         <div class="min-w-0">
             <div class="flex flex-wrap items-center gap-3">
-                <flux:heading level="1" size="2xl" class="!font-bold">{{ $title }}</flux:heading>
+                <flux:heading level="1" size="xl" class="!font-bold">{{ $title }}</flux:heading>
 
                 @if (isset($meta))
                     {{ $meta }}
