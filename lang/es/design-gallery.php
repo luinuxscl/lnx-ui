@@ -8,8 +8,6 @@ return [
     'library_intro' => 'Componentes reutilizables del paquete lnx-ui. Cada uno tiene un nombre y un ancla estables (#nombre) para referenciarlo con la IA.',
     'page_header_title' => 'Usuarios',
     'page_header_subtitle' => 'Gestiona cuentas, roles e invitaciones.',
-    'page_header_home' => 'Inicio',
-    'page_header_section' => 'Administración',
     'page_header_export' => 'Exportar',
     'page_header_add' => 'Añadir',
     'sales' => 'Ventas',

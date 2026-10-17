@@ -1,7 +1,6 @@
 @props([
     'title',
     'subtitle' => null,
-    'breadcrumbs' => [],
     'icon' => null,
     'color' => 'accent',
 ])
@@ -16,10 +15,6 @@
         'amber' => 'bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-400',
         default => 'bg-accent/10 text-accent-content',
     };
-
-    $trail = collect($breadcrumbs)
-        ->filter(fn ($item) => filled($item['label'] ?? null))
-        ->values();
 @endphp
 
 <div {{ $attributes->class('flex flex-wrap items-start justify-between gap-4') }}>
@@ -31,16 +26,6 @@
         @endif
 
         <div class="min-w-0">
-            @if ($trail->isNotEmpty())
-                <flux:breadcrumbs class="mb-1.5">
-                    @foreach ($trail as $item)
-                        <flux:breadcrumbs.item :href="$item['href'] ?? null" wire:navigate>
-                            {{ $item['label'] }}
-                        </flux:breadcrumbs.item>
-                    @endforeach
-                </flux:breadcrumbs>
-            @endif
-
             <div class="flex flex-wrap items-center gap-3">
                 <flux:heading level="1">{{ $title }}</flux:heading>
 
