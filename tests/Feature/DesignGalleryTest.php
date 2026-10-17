@@ -20,9 +20,15 @@ it('renders the shared design gallery with component anchors', function () {
         ->toContain('id="chip"')
         ->toContain('id="data-table"')
         ->toContain('id="page-header"')
+        ->toContain('id="mail-list-item"')
+        ->toContain('id="attachment-card"')
+        ->toContain('id="presence-list"')
+        ->toContain('id="mail-viewer"')
         ->toContain('x-lnx-ui::stat')
         ->toContain('x-lnx-ui::data-table')
         ->toContain('x-lnx-ui::page-header')
+        ->toContain('x-lnx-ui::mail-list-item')
+        ->toContain('x-lnx-ui::mail-viewer')
         ->toContain('Shared library (lnx-ui)')
         ->toContain('Design gallery');
 });
