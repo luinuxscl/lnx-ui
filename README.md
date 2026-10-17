@@ -75,6 +75,7 @@ Las cadenas de la galería viven en el namespace `lnx-ui::design-gallery` (`lang
 | `x-lnx-ui::summary-card` | `label`, `value`, `caption`, `change`, `icon`, `color` |
 | `x-lnx-ui::page-header` | `title`, `subtitle`, `icon`, `color`; slot `actions` |
 | `x-lnx-ui::data-table` | `title` (opcional), `description`, `filters-label`, `paginate`, `table-class`, `container-class`; slots `filters`, `toolbar`, `actions` y el contenido de la tabla |
+| `x-lnx-ui::data-table-inline` | `title` (opcional), `description`, `paginate`, `table-class`, `container-class`; slots `filters`, `filtersActions`, `toolbar`, `actions` y el contenido de la tabla |
 | `x-lnx-ui::mail-list-item` | `sender`, `email`, `avatar`, `subject`, `preview`, `time`, `unread`, `starred`, `selected`, `badge` (`['label' => …, 'color' => …]`), `href`, `select-label`, `star-label`; slots `select`, `star` |
 | `x-lnx-ui::attachment-card` | `name`, `size`, `icon`, `color`, `href`; slot `action` |
 | `x-lnx-ui::presence-list` | `title` (opcional), `users` (array de `name`, `avatar`, `line`, `online`) |
@@ -98,6 +99,8 @@ Los componentes de correo (`mail-list-item`, `attachment-card`, `presence-list`,
     </x-slot:actions>
 </x-lnx-ui::page-header>
 ```
+
+`data-table-inline` es la variante compacta de `data-table` para barras de filtros: no muestra el rótulo de filtros y coloca el slot `filtersActions` (exportar, limpiar, etc.) alineado a la derecha dentro de la misma fila que `filters`, ajustándose a ancho completo en pantallas estrechas.
 
 `data-table` renderiza el `title` solo si se entrega: sin título ni slot `filters`, desaparece la fila superior. `container-class` se reenvía al contenedor de `flux:table` (el que envuelve la tabla, el pie y la paginación), útil para acotar la altura y fijar el encabezado (por ejemplo `container-class="max-h-[70vh] overflow-auto"` junto con `sticky` en `flux:table.columns`). No lo uses para el ancho.
 

@@ -89,6 +89,7 @@ return [
     'filter_status' => 'Estado',
     'filter_category' => 'Categoría',
     'filter_all' => 'Todos',
+    'clear_filters' => 'Limpiar filtros',
     'stock_in' => 'En stock',
     'stock_out' => 'Sin stock',
     'search_placeholder' => 'Buscar registros',

@@ -8,7 +8,7 @@
         <nav aria-label="{{ __('lnx-ui::design-gallery.index') }}" class="rounded-xl border border-zinc-200 p-4 dark:border-zinc-800">
             <flux:heading level="2" size="sm">{{ __('lnx-ui::design-gallery.index') }}</flux:heading>
             <ul class="mt-3 grid grid-cols-2 gap-x-4 gap-y-1 font-mono text-sm sm:grid-cols-3 lg:grid-cols-4">
-                @foreach (['page-header', 'stat', 'stat-card', 'statistics-panel', 'trend-card', 'chart-card', 'metric-card', 'summary-card', 'tool-card', 'resource-card', 'media-cell', 'chip', 'data-table', 'placeholder-pattern', 'auth-header', 'auth-session-status', 'mail-list-item', 'attachment-card', 'presence-list', 'mail-viewer', 'loading', 'empty-state', 'error-state', 'validation', 'actions-statuses', 'messaging'] as $anchor)
+                @foreach (['page-header', 'stat', 'stat-card', 'statistics-panel', 'trend-card', 'chart-card', 'metric-card', 'summary-card', 'tool-card', 'resource-card', 'media-cell', 'chip', 'data-table', 'data-table-inline', 'placeholder-pattern', 'auth-header', 'auth-session-status', 'mail-list-item', 'attachment-card', 'presence-list', 'mail-viewer', 'loading', 'empty-state', 'error-state', 'validation', 'actions-statuses', 'messaging'] as $anchor)
                     <li><a href="#{{ $anchor }}" class="text-accent-content hover:underline">{{ $anchor }}</a></li>
                 @endforeach
             </ul>
@@ -451,6 +451,42 @@
                         </flux:table.row>
                     </flux:table.rows>
                 </x-lnx-ui::data-table>
+            </div>
+
+            {{-- data-table-inline --}}
+            <div id="data-table-inline" class="scroll-mt-24 space-y-3">
+                <flux:heading level="3"><code class="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-sm dark:bg-zinc-800">x-lnx-ui::data-table-inline</code></flux:heading>
+
+                <x-lnx-ui::data-table-inline :title="__('lnx-ui::design-gallery.directory_title')">
+                    <x-slot:filters>
+                        <div class="w-full sm:w-52">
+                            <flux:select :aria-label="__('lnx-ui::design-gallery.filter_status')">
+                                <flux:select.option value="">{{ __('lnx-ui::design-gallery.filter_all') }}</flux:select.option>
+                                <flux:select.option value="active">{{ __('lnx-ui::design-gallery.status_active') }}</flux:select.option>
+                                <flux:select.option value="inactive">{{ __('lnx-ui::design-gallery.status_inactive') }}</flux:select.option>
+                            </flux:select>
+                        </div>
+                    </x-slot:filters>
+
+                    <x-slot:filtersActions>
+                        <flux:button variant="ghost" icon="x-mark">{{ __('lnx-ui::design-gallery.clear_filters') }}</flux:button>
+                        <flux:button icon="arrow-down-tray">{{ __('lnx-ui::design-gallery.export') }}</flux:button>
+                    </x-slot:filtersActions>
+
+                    <flux:table.columns>
+                        <flux:table.column>{{ __('lnx-ui::design-gallery.col_item') }}</flux:table.column>
+                        <flux:table.column>{{ __('lnx-ui::design-gallery.col_category') }}</flux:table.column>
+                        <flux:table.column>{{ __('lnx-ui::design-gallery.col_status') }}</flux:table.column>
+                    </flux:table.columns>
+
+                    <flux:table.rows>
+                        <flux:table.row>
+                            <flux:table.cell>{{ __('lnx-ui::design-gallery.no_records') }}</flux:table.cell>
+                            <flux:table.cell>—</flux:table.cell>
+                            <flux:table.cell>—</flux:table.cell>
+                        </flux:table.row>
+                    </flux:table.rows>
+                </x-lnx-ui::data-table-inline>
             </div>
 
             {{-- placeholder-pattern --}}
