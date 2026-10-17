@@ -119,3 +119,31 @@ it('omits the toolbar row when its slots are empty', function () {
         ->toContain('Directory')
         ->not->toContain('sm:justify-between');
 });
+
+it('renders the inline data table with filters and right-aligned actions', function () {
+    $html = Blade::render(<<<'BLADE'
+        <x-lnx-ui::data-table-inline title="Directory">
+            <x-slot:filters><select name="status"></select></x-slot:filters>
+            <x-slot:filtersActions><button>Export</button></x-slot:filtersActions>
+            <flux:table.columns><flux:table.column>Item</flux:table.column></flux:table.columns>
+            <flux:table.rows><flux:table.row><flux:table.cell>Row</flux:table.cell></flux:table.row></flux:table.rows>
+        </x-lnx-ui::data-table-inline>
+        BLADE);
+
+    expect($html)
+        ->toContain('Directory')
+        ->toContain('name="status"')
+        ->toContain('Export')
+        ->toContain('sm:ms-auto')
+        ->toContain('Row')
+        ->not->toContain('Filters');
+});
+
+it('renders the inline filter row when only actions are given', function () {
+    $html = Blade::render('<x-lnx-ui::data-table-inline><x-slot:filtersActions><button>Export</button></x-slot:filtersActions><flux:table.rows><flux:table.row><flux:table.cell>Only</flux:table.cell></flux:table.row></flux:table.rows></x-lnx-ui::data-table-inline>');
+
+    expect($html)
+        ->toContain('Export')
+        ->toContain('items-end')
+        ->toContain('Only');
+});

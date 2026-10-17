@@ -89,6 +89,7 @@ return [
     'filter_status' => 'Status',
     'filter_category' => 'Category',
     'filter_all' => 'All',
+    'clear_filters' => 'Clear filters',
     'stock_in' => 'In stock',
     'stock_out' => 'Out of stock',
     'search_placeholder' => 'Search records',
