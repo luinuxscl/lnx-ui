@@ -75,8 +75,14 @@ Las cadenas de la galería viven en el namespace `lnx-ui::design-gallery` (`lang
 | `x-lnx-ui::summary-card` | `label`, `value`, `caption`, `change`, `icon`, `color` |
 | `x-lnx-ui::page-header` | `title`, `subtitle`, `icon`, `color`; slot `actions` |
 | `x-lnx-ui::data-table` | `title` (opcional), `description`, `filters-label`, `paginate`, `table-class`, `container-class`; slots `filters`, `toolbar`, `actions` y el contenido de la tabla |
+| `x-lnx-ui::mail-list-item` | `sender`, `email`, `avatar`, `subject`, `preview`, `time`, `unread`, `starred`, `selected`, `badge` (`['label' => …, 'color' => …]`), `href`, `select-label`, `star-label`; slots `select`, `star` |
+| `x-lnx-ui::attachment-card` | `name`, `size`, `icon`, `color`, `href`; slot `action` |
+| `x-lnx-ui::presence-list` | `title` (opcional), `users` (array de `name`, `avatar`, `line`, `online`) |
+| `x-lnx-ui::mail-viewer` | `sender`, `email`, `avatar`, `subject`, `date`; slots `actions`, `attachments`, `reply`, `footer` y el cuerpo por defecto |
 
 `color` acepta `accent` (predeterminado), `violet`, `cyan`, `rose`, `emerald`, `blue` y `amber`.
+
+Los componentes de correo (`mail-list-item`, `attachment-card`, `presence-list`, `mail-viewer`) son presentacionales: el consumidor aporta los textos ya traducidos y los datos ya formateados. Sus etiquetas accesibles viven en el namespace `lnx-ui::components` (`lang/{en,es}/components.php`) y se pueden sobrescribir con `select-label`/`star-label`.
 
 `page-header` es el encabezado estándar de una página: un solo `<h1>` con el título, un subtítulo opcional y un badge de icono opcional. Las acciones de la página van en el slot `actions`, alineadas a la derecha:
 
