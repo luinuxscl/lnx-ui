@@ -166,4 +166,8 @@ return [
     'mail_action_reply' => 'Responder',
     'mail_forward' => 'Reenviar',
     'mail_reply' => 'Responder',
+
+    'rich_text_body' => 'Cuerpo',
+    'rich_text_placeholder' => 'Empieza a escribir el artículo…',
+    'rich_text_sample' => 'Selecciona parte de este texto y usa el slot de acciones para pasarle un asistente de IA.',
 ];

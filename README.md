@@ -80,6 +80,7 @@ Las cadenas de la galería viven en el namespace `lnx-ui::design-gallery` (`lang
 | `x-lnx-ui::attachment-card` | `name`, `size`, `icon`, `color`, `href`; slot `action` |
 | `x-lnx-ui::presence-list` | `title` (opcional), `users` (array de `name`, `avatar`, `line`, `online`) |
 | `x-lnx-ui::mail-viewer` | `sender`, `email`, `avatar`, `subject`, `date`; slots `actions`, `attachments`, `reply`, `footer` y el cuerpo por defecto |
+| `x-lnx-ui::rich-text-editor` | `value`, `label`, `placeholder`, `disabled`; slot `actions`; usa `wire:model`/`x-model` |
 
 `color` acepta `accent` (predeterminado), `violet`, `cyan`, `rose`, `emerald`, `blue` y `amber`.
 
@@ -113,6 +114,52 @@ En `chart-card` y `metric-card`, `help` añade un texto de ayuda inline bajo la 
 ```blade
 <x-lnx-ui::metric-card :label="__('Total sales')" value="24.67k" icon="shopping-bag" :help="__('Includes confirmed and pending records.')" />
 ```
+
+## Editor de texto enriquecido
+
+`x-lnx-ui::rich-text-editor` es un editor TipTap (ProseMirror) con toolbar accesible para negrita, cursiva, `h2`/`h3`, listas, cita, enlaces y deshacer/rehacer. El HTML resultante es responsabilidad de la app: **siempre debe sanearse en el servidor antes de guardarlo**.
+
+```blade
+<x-lnx-ui::rich-text-editor
+    wire:model="bodyHtml"
+    :value="$bodyHtml"
+    :label="__('Body')"
+    :placeholder="__('Start writing…')"
+>
+    <x-slot:actions>
+        <button type="button" x-on:click="assist('improve')">{{ __('Improve') }}</button>
+    </x-slot:actions>
+</x-lnx-ui::rich-text-editor>
+```
+
+El componente usa `x-modelable="html"`, así que funciona con `wire:model` en Livewire y con `x-model` en Alpine. Para uso standalone, pasa el contenido inicial en `value`.
+
+### Dependencias JavaScript
+
+El paquete solo distribuye el módulo ESM; las dependencias npm las instala la app consumidora:
+
+```bash
+npm install @tiptap/core @tiptap/starter-kit @tiptap/pm
+```
+
+Importa el módulo una sola vez en el bundle de la app:
+
+```js
+// resources/js/app.js
+import '../../vendor/luinuxscl/lnx-ui/resources/js/rich-text-editor.js';
+```
+
+El módulo registra el componente Alpine `lnxRichText` en `alpine:init`. Las clases Tailwind de la vista ya se detectan con el `@source` del paquete.
+
+### Acciones de IA y eventos
+
+El editor no implementa IA. La app dibuja sus acciones en el slot `actions` y llama a `assist(action)`, que captura la selección y emite un evento Livewire:
+
+- `lnx-rich-text:assist` (`{ action, html }`) — la app recibe la selección.
+- `lnx-rich-text:assist-complete` (`{ html }`) — la app devuelve el HTML saneado; el editor reemplaza la selección. Con `html: null` solo se reactiva el editor.
+- `lnx-rich-text:set-content` (`{ html }`) — reemplaza el contenido completo (por ejemplo, tras una acción de IA o al normalizar tras guardar).
+
+Mientras espera la respuesta, el editor se bloquea para conservar el rango de selección. La sustitución es una sola transacción, así que se puede deshacer.
 
 ## Versionado
 

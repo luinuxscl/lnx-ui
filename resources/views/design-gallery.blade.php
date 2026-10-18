@@ -8,7 +8,7 @@
         <nav aria-label="{{ __('lnx-ui::design-gallery.index') }}" class="rounded-xl border border-zinc-200 p-4 dark:border-zinc-800">
             <flux:heading level="2" size="sm">{{ __('lnx-ui::design-gallery.index') }}</flux:heading>
             <ul class="mt-3 grid grid-cols-2 gap-x-4 gap-y-1 font-mono text-sm sm:grid-cols-3 lg:grid-cols-4">
-                @foreach (['page-header', 'stat', 'stat-card', 'statistics-panel', 'trend-card', 'chart-card', 'metric-card', 'summary-card', 'tool-card', 'resource-card', 'media-cell', 'chip', 'data-table', 'data-table-inline', 'placeholder-pattern', 'auth-header', 'auth-session-status', 'mail-list-item', 'attachment-card', 'presence-list', 'mail-viewer', 'loading', 'empty-state', 'error-state', 'validation', 'actions-statuses', 'messaging'] as $anchor)
+                @foreach (['page-header', 'stat', 'stat-card', 'statistics-panel', 'trend-card', 'chart-card', 'metric-card', 'summary-card', 'tool-card', 'resource-card', 'media-cell', 'chip', 'data-table', 'data-table-inline', 'placeholder-pattern', 'auth-header', 'auth-session-status', 'mail-list-item', 'attachment-card', 'presence-list', 'mail-viewer', 'rich-text-editor', 'loading', 'empty-state', 'error-state', 'validation', 'actions-statuses', 'messaging'] as $anchor)
                     <li><a href="#{{ $anchor }}" class="text-accent-content hover:underline">{{ $anchor }}</a></li>
                 @endforeach
             </ul>
@@ -705,6 +705,21 @@
                         Michael Jeremy
                     </p>
                 </x-lnx-ui::mail-viewer>
+            </div>
+
+            {{-- rich-text-editor --}}
+            <div id="rich-text-editor" class="scroll-mt-24 space-y-3">
+                <flux:heading level="3"><code class="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-sm dark:bg-zinc-800">x-lnx-ui::rich-text-editor</code></flux:heading>
+
+                @php
+                    $richTextSample = '<p>'.e(__('lnx-ui::design-gallery.rich_text_sample')).'</p>';
+                @endphp
+
+                <x-lnx-ui::rich-text-editor
+                    :value="$richTextSample"
+                    :label="__('lnx-ui::design-gallery.rich_text_body')"
+                    :placeholder="__('lnx-ui::design-gallery.rich_text_placeholder')"
+                />
             </div>
         </section>
 
