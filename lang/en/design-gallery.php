@@ -166,4 +166,8 @@ return [
     'mail_action_reply' => 'Reply',
     'mail_forward' => 'Forward',
     'mail_reply' => 'Reply',
+
+    'rich_text_body' => 'Body',
+    'rich_text_placeholder' => 'Start writing the article…',
+    'rich_text_sample' => 'Select part of this text and use the actions slot to run an AI assistant over it.',
 ];

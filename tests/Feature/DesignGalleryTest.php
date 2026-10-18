@@ -24,6 +24,7 @@ it('renders the shared design gallery with component anchors', function () {
         ->toContain('id="attachment-card"')
         ->toContain('id="presence-list"')
         ->toContain('id="mail-viewer"')
+        ->toContain('id="rich-text-editor"')
         ->toContain('x-lnx-ui::stat')
         ->toContain('x-lnx-ui::data-table')
         ->toContain('x-lnx-ui::page-header')
