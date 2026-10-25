@@ -8,7 +8,7 @@
         <nav aria-label="{{ __('lnx-ui::design-gallery.index') }}" class="rounded-xl border border-zinc-200 p-4 dark:border-zinc-800">
             <flux:heading level="2" size="sm">{{ __('lnx-ui::design-gallery.index') }}</flux:heading>
             <ul class="mt-3 grid grid-cols-2 gap-x-4 gap-y-1 font-mono text-sm sm:grid-cols-3 lg:grid-cols-4">
-                @foreach (['page-header', 'stat', 'stat-card', 'statistics-panel', 'trend-card', 'chart-card', 'metric-card', 'summary-card', 'tool-card', 'resource-card', 'media-cell', 'chip', 'data-table', 'data-table-inline', 'placeholder-pattern', 'auth-header', 'auth-session-status', 'mail-list-item', 'attachment-card', 'presence-list', 'mail-viewer', 'rich-text-editor', 'loading', 'empty-state', 'error-state', 'validation', 'actions-statuses', 'messaging'] as $anchor)
+                @foreach (['page-header', 'stat', 'stat-card', 'statistics-panel', 'trend-card', 'chart-card', 'metric-card', 'summary-card', 'tool-card', 'resource-card', 'properties-card', 'timeline', 'media-cell', 'chip', 'data-table', 'data-table-inline', 'placeholder-pattern', 'auth-header', 'auth-session-status', 'mail-list-item', 'attachment-card', 'presence-list', 'mail-viewer', 'rich-text-editor', 'loading', 'empty-state', 'error-state', 'validation', 'actions-statuses', 'messaging'] as $anchor)
                     <li><a href="#{{ $anchor }}" class="text-accent-content hover:underline">{{ $anchor }}</a></li>
                 @endforeach
             </ul>
@@ -274,6 +274,75 @@
                             </x-slot:meta>
                         </x-lnx-ui::resource-card>
                     </div>
+                </div>
+            </div>
+
+            {{-- properties-card --}}
+            <div id="properties-card" class="scroll-mt-24 space-y-3">
+                <flux:heading level="3"><code class="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-sm dark:bg-zinc-800">x-lnx-ui::properties-card</code></flux:heading>
+
+                <div class="grid gap-4 lg:grid-cols-2">
+                    <x-lnx-ui::properties-card
+                        :title="__('lnx-ui::design-gallery.properties_title')"
+                        :description="__('lnx-ui::design-gallery.properties_description')"
+                        :items="[
+                            ['label' => __('lnx-ui::design-gallery.properties_owner'), 'value' => 'Ana Ruiz', 'icon' => 'user'],
+                            ['label' => __('lnx-ui::design-gallery.properties_stage'), 'value' => __('lnx-ui::design-gallery.properties_stage_value')],
+                            ['label' => __('lnx-ui::design-gallery.properties_domain'), 'value' => 'acme.test', 'href' => 'https://acme.test'],
+                            ['label' => __('lnx-ui::design-gallery.properties_phone'), 'value' => null],
+                        ]"
+                        :columns="2"
+                    >
+                        <x-slot:actions>
+                            <flux:button size="sm" variant="ghost" icon="pencil-square">{{ __('lnx-ui::design-gallery.action_edit') }}</flux:button>
+                        </x-slot:actions>
+                    </x-lnx-ui::properties-card>
+
+                    <x-lnx-ui::properties-card :title="__('lnx-ui::design-gallery.properties_empty_title')">
+                        <x-slot:empty>{{ __('lnx-ui::design-gallery.properties_empty') }}</x-slot:empty>
+                    </x-lnx-ui::properties-card>
+                </div>
+            </div>
+
+            {{-- timeline --}}
+            <div id="timeline" class="scroll-mt-24 space-y-3">
+                <flux:heading level="3"><code class="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-sm dark:bg-zinc-800">x-lnx-ui::timeline</code></flux:heading>
+
+                <div class="grid gap-4 lg:grid-cols-2">
+                    <x-lnx-ui::timeline
+                        :title="__('lnx-ui::design-gallery.timeline_title')"
+                        :description="__('lnx-ui::design-gallery.timeline_description')"
+                        :items="[
+                            [
+                                'title' => __('lnx-ui::design-gallery.timeline_created'),
+                                'description' => __('lnx-ui::design-gallery.timeline_created_description'),
+                                'time' => __('lnx-ui::design-gallery.timeline_time_today'),
+                                'datetime' => '2026-10-25T09:15:00Z',
+                                'icon' => 'plus-circle',
+                                'color' => 'emerald',
+                                'meta' => 'Ana Ruiz',
+                            ],
+                            [
+                                'title' => __('lnx-ui::design-gallery.timeline_updated'),
+                                'description' => __('lnx-ui::design-gallery.timeline_updated_description'),
+                                'time' => __('lnx-ui::design-gallery.timeline_time_yesterday'),
+                                'datetime' => '2026-10-24T17:40:00Z',
+                                'icon' => 'pencil-square',
+                                'color' => 'blue',
+                                'meta' => 'Luis',
+                            ],
+                            [
+                                'title' => __('lnx-ui::design-gallery.timeline_tagged'),
+                                'time' => __('lnx-ui::design-gallery.timeline_time_week'),
+                                'icon' => 'tag',
+                                'color' => 'violet',
+                            ],
+                        ]"
+                    />
+
+                    <x-lnx-ui::timeline :title="__('lnx-ui::design-gallery.timeline_empty_title')">
+                        <x-slot:empty>{{ __('lnx-ui::design-gallery.timeline_empty') }}</x-slot:empty>
+                    </x-lnx-ui::timeline>
                 </div>
             </div>
 
