@@ -25,11 +25,15 @@ it('renders the shared design gallery with component anchors', function () {
         ->toContain('id="presence-list"')
         ->toContain('id="mail-viewer"')
         ->toContain('id="rich-text-editor"')
+        ->toContain('id="properties-card"')
+        ->toContain('id="timeline"')
         ->toContain('x-lnx-ui::stat')
         ->toContain('x-lnx-ui::data-table')
         ->toContain('x-lnx-ui::page-header')
         ->toContain('x-lnx-ui::mail-list-item')
         ->toContain('x-lnx-ui::mail-viewer')
+        ->toContain('x-lnx-ui::properties-card')
+        ->toContain('x-lnx-ui::timeline')
         ->toContain('Shared library (lnx-ui)')
         ->toContain('Design gallery');
 });
