@@ -1,14 +1,21 @@
 # lnx-ui
 
-Componentes UI compartidos para las aplicaciones derivadas del kit **lnx**. Es un paquete Composer de Blade anónimos, pensado para tener una sola fuente de componentes entre proyectos y permitir que cada app los sobrescriba sin tocar el paquete.
+[![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](LICENSE.md)
+
+Componentes UI compartidos para las aplicaciones derivadas del kit **[lnx](https://github.com/luinuxscl/lnx)**. Es un paquete Composer de Blade anónimos, pensado para tener una sola fuente de componentes entre proyectos y permitir que cada app los sobrescriba sin tocar el paquete.
+
+Licencia **MIT**: parte del kit. Úsalo y modifícalo libremente.
 
 ## Instalación
 
-En una app lnx, añade el repositorio (VCS privado en despliegue, `path` en desarrollo local) y requiere el paquete:
+En una app lnx, añade el repositorio VCS público y requiere el paquete:
 
 ```bash
+composer config repositories.lnx-ui vcs https://github.com/luinuxscl/lnx-ui.git
 composer require luinuxscl/lnx-ui
 ```
+
+En desarrollo local del propio paquete puedes usar un repositorio `path` en lugar del VCS.
 
 El `LnxUiServiceProvider` se autodescubre gracias a `extra.laravel.providers`: no hay que registrarlo a mano.
 
