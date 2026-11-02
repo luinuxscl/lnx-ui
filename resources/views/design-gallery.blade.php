@@ -39,6 +39,12 @@
                 <x-lnx-ui::page-header
                     :title="__('lnx-ui::design-gallery.page_header_title')"
                     :subtitle="__('lnx-ui::design-gallery.page_header_subtitle')"
+                    :eyebrow="__('lnx-ui::design-gallery.page_header_eyebrow')"
+                />
+
+                <x-lnx-ui::page-header
+                    :title="__('lnx-ui::design-gallery.page_header_title')"
+                    :subtitle="__('lnx-ui::design-gallery.page_header_subtitle')"
                 />
             </div>
 
