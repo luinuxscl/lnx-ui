@@ -1,6 +1,7 @@
 @props([
     'title',
     'subtitle' => null,
+    'eyebrow' => null,
     'icon' => null,
     'color' => 'accent',
 ])
@@ -26,6 +27,10 @@
         @endif
 
         <div class="min-w-0">
+            @if (filled($eyebrow))
+                <div class="mb-1 text-sm font-semibold text-zinc-600 dark:text-zinc-400">{{ $eyebrow }}</div>
+            @endif
+
             <div class="flex flex-wrap items-center gap-3">
                 <flux:heading level="1" size="xl" class="!font-bold">{{ $title }}</flux:heading>
 

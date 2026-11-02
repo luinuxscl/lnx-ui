@@ -8,6 +8,7 @@ return [
     'library_intro' => 'Reusable components from the lnx-ui package. Each one has a stable name and anchor (#name) to reference it with the AI.',
     'page_header_title' => 'Users',
     'page_header_subtitle' => 'Manage accounts, roles and invitations.',
+    'page_header_eyebrow' => 'Monday, November 2, 2026',
     'page_header_export' => 'Export',
     'page_header_add' => 'Add',
     'sales' => 'Sales',

@@ -141,6 +141,26 @@ it('renders the page header with title, subtitle and actions', function () {
         ->toContain('<h1');
 });
 
+it('renders the page header eyebrow as text or slot', function () {
+    $text = Blade::render('<x-lnx-ui::page-header title="Dashboard" eyebrow="Monday, November 2, 2026" />');
+
+    $slot = Blade::render(<<<'BLADE'
+        <x-lnx-ui::page-header title="Dashboard">
+            <x-slot:eyebrow><time datetime="2026-11-02">Monday, November 2, 2026</time></x-slot:eyebrow>
+        </x-lnx-ui::page-header>
+    BLADE);
+
+    $without = Blade::render('<x-lnx-ui::page-header title="Dashboard" />');
+
+    expect($text)
+        ->toContain('Monday, November 2, 2026')
+        ->toContain('font-semibold')
+        ->and($slot)
+        ->toContain('<time datetime="2026-11-02">')
+        ->and($without)
+        ->not->toContain('font-semibold');
+});
+
 it('does not render a breadcrumb trail', function () {
     $html = Blade::render('<x-lnx-ui::page-header title="Users" />');
 

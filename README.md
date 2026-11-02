@@ -82,7 +82,7 @@ Las cadenas de la galería viven en el namespace `lnx-ui::design-gallery` (`lang
 | `x-lnx-ui::chip` | `label`, `icon`, `color`; el slot es el fallback |
 | `x-lnx-ui::media-cell` | `title`, `description`, `icon`, `image`, `href`, `color` |
 | `x-lnx-ui::summary-card` | `label`, `value`, `caption`, `change`, `icon`, `color` |
-| `x-lnx-ui::page-header` | `title`, `subtitle`, `icon`, `color`; slot `actions` |
+| `x-lnx-ui::page-header` | `title`, `subtitle`, `eyebrow`, `icon`, `color`; slots `eyebrow` y `actions` |
 | `x-lnx-ui::data-table` | `title` (opcional), `description`, `filters-label`, `paginate`, `table-class`, `container-class`; slots `filters`, `toolbar`, `actions` y el contenido de la tabla |
 | `x-lnx-ui::data-table-inline` | `title` (opcional), `description`, `paginate`, `table-class`, `container-class`; slots `filters`, `filtersActions`, `toolbar`, `actions` y el contenido de la tabla |
 | `x-lnx-ui::mail-list-item` | `sender`, `email`, `avatar`, `subject`, `preview`, `time`, `unread`, `starred`, `selected`, `badge` (`['label' => …, 'color' => …]`), `href`, `select-label`, `star-label`; slots `select`, `star` |
@@ -95,7 +95,7 @@ Las cadenas de la galería viven en el namespace `lnx-ui::design-gallery` (`lang
 
 Los componentes de correo (`mail-list-item`, `attachment-card`, `presence-list`, `mail-viewer`) son presentacionales: el consumidor aporta los textos ya traducidos y los datos ya formateados. Sus etiquetas accesibles viven en el namespace `lnx-ui::components` (`lang/{en,es}/components.php`) y se pueden sobrescribir con `select-label`/`star-label`.
 
-`page-header` es el encabezado estándar de una página: un solo `<h1>` con el título, un subtítulo opcional y un badge de icono opcional. Las acciones de la página van en el slot `actions`, alineadas a la derecha:
+`page-header` es el encabezado estándar de una página: un solo `<h1>` con el título, un subtítulo opcional y un badge de icono opcional. El `eyebrow` opcional añade una línea pequeña y semibold sobre el título —útil para una fecha o un contexto breve— y acepta texto o el slot `eyebrow` cuando hace falta HTML, por ejemplo `<time datetime="…">`. Las acciones de la página van en el slot `actions`, alineadas a la derecha:
 
 ```blade
 <x-lnx-ui::page-header
@@ -107,6 +107,16 @@ Los componentes de correo (`mail-list-item`, `attachment-card`, `presence-list`,
     <x-slot:actions>
         <flux:button variant="primary" icon="plus">{{ __('Invite user') }}</flux:button>
     </x-slot:actions>
+</x-lnx-ui::page-header>
+```
+
+El `eyebrow` se puede pasar como texto o como slot cuando el contenido necesita semántica propia:
+
+```blade
+<x-lnx-ui::page-header :title="__('Dashboard')">
+    <x-slot:eyebrow>
+        <time datetime="2026-11-02">{{ __('Monday, November 2, 2026') }}</time>
+    </x-slot:eyebrow>
 </x-lnx-ui::page-header>
 ```
 
