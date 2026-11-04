@@ -8,7 +8,7 @@
         <nav aria-label="{{ __('lnx-ui::design-gallery.index') }}" class="rounded-xl border border-zinc-200 p-4 dark:border-zinc-800">
             <flux:heading level="2" size="sm">{{ __('lnx-ui::design-gallery.index') }}</flux:heading>
             <ul class="mt-3 grid grid-cols-2 gap-x-4 gap-y-1 font-mono text-sm sm:grid-cols-3 lg:grid-cols-4">
-                @foreach (['page-header', 'stat', 'stat-card', 'statistics-panel', 'trend-card', 'chart-card', 'metric-card', 'summary-card', 'tool-card', 'resource-card', 'properties-card', 'timeline', 'media-cell', 'chip', 'data-table', 'data-table-inline', 'placeholder-pattern', 'auth-header', 'auth-session-status', 'mail-list-item', 'attachment-card', 'presence-list', 'mail-viewer', 'rich-text-editor', 'loading', 'empty-state', 'error-state', 'validation', 'actions-statuses', 'messaging'] as $anchor)
+                @foreach (['page-header', 'stat', 'stat-card', 'statistics-panel', 'trend-card', 'chart-card', 'metric-card', 'summary-card', 'tool-card', 'resource-card', 'properties-card', 'timeline', 'media-cell', 'chip', 'data-table', 'data-table-inline', 'placeholder-pattern', 'auth-header', 'auth-session-status', 'mail-list-item', 'attachment-card', 'presence-list', 'mail-viewer', 'rich-text-editor', 'sam', 'loading', 'empty-state', 'error-state', 'validation', 'actions-statuses', 'messaging'] as $anchor)
                     <li><a href="#{{ $anchor }}" class="text-accent-content hover:underline">{{ $anchor }}</a></li>
                 @endforeach
             </ul>
@@ -844,6 +844,105 @@
                     <flux:button variant="ghost" href="#" wire:navigate>{{ __('lnx-ui::design-gallery.cancel') }}</flux:button>
                 </div>
             </flux:card>
+        </section>
+
+        <section id="sam" class="scroll-mt-24 space-y-4" aria-label="{{ __('lnx-ui::design-gallery.sam') }}">
+            <div>
+                <flux:heading level="2">{{ __('lnx-ui::design-gallery.sam') }}</flux:heading>
+                <flux:text class="mt-1">{{ __('lnx-ui::design-gallery.sam_intro') }}</flux:text>
+            </div>
+
+            <flux:heading level="3"><code class="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-sm dark:bg-zinc-800">x-lnx-ui::sam-panel</code></flux:heading>
+
+            <x-lnx-ui::sam-panel preview title="Sam" subtitle="Agente de plataforma" open="true" close="true">
+                <x-slot:context>
+                    <x-lnx-ui::sam-context-chip :label="__('lnx-ui::design-gallery.sam_sample_context')" source="crm" />
+                </x-slot:context>
+
+                <div class="space-y-3">
+                    <x-lnx-ui::sam-message role="user">
+                        {{ __('lnx-ui::design-gallery.sam_sample_user') }}
+                    </x-lnx-ui::sam-message>
+
+                    <x-lnx-ui::sam-message>
+                        {{ __('lnx-ui::design-gallery.sam_sample_assistant') }}
+                    </x-lnx-ui::sam-message>
+
+                    <x-lnx-ui::sam-typing />
+
+                    <x-lnx-ui::sam-proposal-card
+                        source="crm"
+                        id="demo-1"
+                        :title="__('lnx-ui::design-gallery.sam_sample_proposal_title')"
+                        :summary="__('lnx-ui::design-gallery.sam_sample_proposal_summary')"
+                        :changes="[[
+                            'field' => 'phone',
+                            'label' => __('lnx-ui::design-gallery.sam_sample_field'),
+                            'old' => '+56 9 1111',
+                            'new' => '+56 9 2222',
+                        ]]"
+                        status="pending"
+                        :expires-at="now()->addMinutes(30)"
+                        record-url="#"
+                        :can-confirm="true"
+                    />
+                </div>
+
+                <x-slot:footer>
+                    <div class="space-y-2">
+                        <x-lnx-ui::sam-suggestions :items="[
+                            __('lnx-ui::design-gallery.sam_sample_suggestion_1'),
+                            __('lnx-ui::design-gallery.sam_sample_suggestion_2'),
+                        ]" />
+
+                        <flux:textarea rows="2" :placeholder="__('lnx-ui::components.sam_proposal_phrase_placeholder')" />
+                    </div>
+                </x-slot:footer>
+            </x-lnx-ui::sam-panel>
+
+            <div class="grid grid-cols-12 gap-4">
+                <div class="col-span-12 space-y-3 rounded-xl border border-zinc-200 p-4 lg:col-span-6 dark:border-zinc-800">
+                    <flux:heading level="3"><code class="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-sm dark:bg-zinc-800">x-lnx-ui::sam-trigger</code></flux:heading>
+                    <x-lnx-ui::sam-trigger />
+
+                    <flux:heading level="3"><code class="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-sm dark:bg-zinc-800">x-lnx-ui::sam-notice</code></flux:heading>
+                    <x-lnx-ui::sam-notice variant="warning">
+                        {{ __('lnx-ui::design-gallery.sam_sample_notice') }}
+                    </x-lnx-ui::sam-notice>
+                </div>
+
+                <div class="col-span-12 rounded-xl border border-zinc-200 p-4 lg:col-span-6 dark:border-zinc-800">
+                    <flux:heading level="3"><code class="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-sm dark:bg-zinc-800">x-lnx-ui::sam-empty-state</code></flux:heading>
+
+                    <x-lnx-ui::sam-empty-state class="mt-3 rounded-xl border border-dashed border-zinc-300 p-4 dark:border-zinc-700">
+                        <x-lnx-ui::sam-suggestions :items="[
+                            __('lnx-ui::design-gallery.sam_sample_suggestion_1'),
+                            __('lnx-ui::design-gallery.sam_sample_suggestion_2'),
+                        ]" />
+                    </x-lnx-ui::sam-empty-state>
+                </div>
+            </div>
+
+            <div class="rounded-xl border border-zinc-200 p-4 dark:border-zinc-800">
+                <flux:heading level="3"><code class="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-sm dark:bg-zinc-800">x-lnx-ui::sam-proposal-card (caducada)</code></flux:heading>
+
+                <x-lnx-ui::sam-proposal-card
+                    class="mt-3"
+                    source="crm"
+                    id="demo-2"
+                    :title="__('lnx-ui::design-gallery.sam_sample_proposal_title')"
+                    :summary="__('lnx-ui::design-gallery.sam_sample_proposal_summary')"
+                    :changes="[[
+                        'field' => 'phone',
+                        'label' => __('lnx-ui::design-gallery.sam_sample_field'),
+                        'old' => '+56 9 1111',
+                        'new' => '+56 9 2222',
+                    ]]"
+                    status="pending"
+                    :expires-at="now()->subMinute()"
+                    :can-confirm="true"
+                />
+            </div>
         </section>
 
         <section id="messaging" class="scroll-mt-24 space-y-4" aria-label="{{ __('lnx-ui::design-gallery.messaging') }}">
