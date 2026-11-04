@@ -194,4 +194,16 @@ return [
     'rich_text_body' => 'Cuerpo',
     'rich_text_placeholder' => 'Empieza a escribir el artículo…',
     'rich_text_sample' => 'Selecciona parte de este texto y usa el slot de acciones para pasarle un asistente de IA.',
+
+    'sam' => 'Superficie de Sam',
+    'sam_intro' => 'Piezas Blade para el panel del agente de plataforma. No dependen de Livewire: el anfitrión conecta el estado, los turnos y la confirmación.',
+    'sam_sample_context' => 'Contacto · Ada Lovelace',
+    'sam_sample_user' => 'Muéstrame el teléfono de este contacto.',
+    'sam_sample_assistant' => 'El teléfono es +56 9 2222. Puedo proponer el cambio si quieres actualizarlo.',
+    'sam_sample_suggestion_1' => 'Resume esta ficha',
+    'sam_sample_suggestion_2' => 'Propón actualizar el teléfono',
+    'sam_sample_proposal_title' => 'Actualizar teléfono',
+    'sam_sample_proposal_summary' => 'Cambia el teléfono del contacto.',
+    'sam_sample_field' => 'Teléfono',
+    'sam_sample_notice' => 'Sam no está configurado o el modelo no admite herramientas.',
 ];
