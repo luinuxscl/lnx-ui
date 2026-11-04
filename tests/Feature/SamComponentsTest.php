@@ -49,6 +49,18 @@ it('renders the sam panel in preview mode without an overlay', function () {
         ->not->toContain('bg-zinc-950/40');
 });
 
+it('renders the sam panel as a non-modal dock for the persistent sidecar', function () {
+    $html = Blade::render('<x-lnx-ui::sam-panel dock title="Sam"><p>conversation</p></x-lnx-ui::sam-panel>');
+
+    expect($html)
+        ->toContain('role="complementary"')
+        ->toContain('conversation')
+        ->toContain('fixed inset-y-0 right-0')
+        ->not->toContain('aria-modal')
+        ->not->toContain('role="dialog"')
+        ->not->toContain('bg-zinc-950/40');
+});
+
 it('renders user and assistant message bubbles', function () {
     $user = Blade::render('<x-lnx-ui::sam-message role="user">hello</x-lnx-ui::sam-message>');
     $assistant = Blade::render('<x-lnx-ui::sam-message>hi</x-lnx-ui::sam-message>');

@@ -5,6 +5,7 @@
     'subtitle' => null,
     'label' => null,
     'preview' => false,
+    'dock' => false,
 ])
 
 @php
@@ -17,7 +18,7 @@
     data-sam-panel
     {{ $attributes->class($preview ? 'relative w-full max-w-md' : '') }}
 >
-    @unless ($preview)
+    @unless ($preview || $dock)
         <div
             x-show="{{ $open }}"
             x-transition.opacity
@@ -37,13 +38,16 @@
         x-transition:leave-end="translate-x-full"
         @if (filled($close)) x-on:keydown.escape.window="{{ $close }}" @endif
         @class([
-            'z-50 flex w-full max-w-md flex-col border-zinc-200 bg-white shadow-xl dark:border-zinc-800 dark:bg-zinc-900',
-            'fixed inset-y-0 right-0 h-full border-s' => ! $preview,
+            'flex w-full max-w-md flex-col border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900',
+            'shadow-xl' => ! $dock,
+            'shadow-sm' => $dock,
+            'fixed inset-y-0 right-0 z-50 h-full border-s' => ! $preview && ! $dock,
+            'fixed inset-y-0 right-0 z-30 h-full border-s' => $dock,
             'relative h-[34rem] overflow-hidden rounded-xl border' => $preview,
         ])
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="sam-panel-title"
+        role="{{ $dock ? 'complementary' : 'dialog' }}"
+        @if (! $dock) aria-modal="true" @endif
+        @if (! $dock) aria-labelledby="sam-panel-title" @endif
         aria-label="{{ $label }}"
     >
         <header class="flex items-start justify-between gap-3 border-b border-zinc-200 px-4 py-3 dark:border-zinc-800">
