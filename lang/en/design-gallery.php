@@ -194,4 +194,16 @@ return [
     'rich_text_body' => 'Body',
     'rich_text_placeholder' => 'Start writing the article…',
     'rich_text_sample' => 'Select part of this text and use the actions slot to run an AI assistant over it.',
+
+    'sam' => 'Sam surface',
+    'sam_intro' => 'Blade pieces for the platform agent panel. They do not depend on Livewire: the host wires state, turns and confirmation.',
+    'sam_sample_context' => 'Contact · Ada Lovelace',
+    'sam_sample_user' => 'Show me this contact phone number.',
+    'sam_sample_assistant' => 'The phone is +56 9 2222. I can propose the change if you want to update it.',
+    'sam_sample_suggestion_1' => 'Summarize this record',
+    'sam_sample_suggestion_2' => 'Propose updating the phone',
+    'sam_sample_proposal_title' => 'Update phone',
+    'sam_sample_proposal_summary' => 'Changes the contact phone number.',
+    'sam_sample_field' => 'Phone',
+    'sam_sample_notice' => 'Sam is not configured or the model does not support tools.',
 ];
