@@ -206,4 +206,20 @@ return [
     'sam_sample_proposal_summary' => 'Changes the contact phone number.',
     'sam_sample_field' => 'Phone',
     'sam_sample_notice' => 'Sam is not configured or the model does not support tools.',
+    'sam_sample_brief' => [
+        'label' => 'Ana Pérez',
+        'resourceLabel' => 'Contact',
+        'narrative' => 'Ana Pérez has no company or owner assigned. Her email appears on 2 more contacts, so it is worth checking whether they are duplicates before writing to her.',
+        'observations' => [
+            'No company assigned.',
+            'No owner assigned.',
+            'There are 2 more contacts with this email.',
+        ],
+        'actions' => [
+            ['key' => 'complete_contact_profile', 'label' => 'Complete profile', 'description' => 'Company and owner are missing.', 'url' => '#'],
+            ['key' => 'compare_email_duplicates', 'label' => 'Compare duplicates', 'description' => 'Avoid emailing the wrong contact.', 'url' => '#'],
+        ],
+        'evidence' => '#',
+        'continuePrompt' => 'Help me complete the profile of Ana Pérez.',
+    ],
 ];
