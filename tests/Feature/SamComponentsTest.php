@@ -191,6 +191,33 @@ it('renders no copy action by default', function () {
         ->not->toContain('data-sam-copy');
 });
 
+it('renders markdown in assistant messages', function () {
+    $html = Blade::render('<x-lnx-ui::sam-message>**Bold** and a [link](https://example.test)</x-lnx-ui::sam-message>');
+
+    expect($html)
+        ->toContain('<strong>Bold</strong>')
+        ->toContain('<a href="https://example.test"')
+        ->not->toContain('**Bold**')
+        ->not->toContain('whitespace-pre-line');
+});
+
+it('keeps user messages as plain text', function () {
+    $html = Blade::render('<x-lnx-ui::sam-message role="user">**Not bold**</x-lnx-ui::sam-message>');
+
+    expect($html)
+        ->toContain('**Not bold**')
+        ->toContain('whitespace-pre-line')
+        ->not->toContain('<strong>');
+});
+
+it('strips raw html and unsafe links from markdown messages', function () {
+    $html = Blade::render('<x-lnx-ui::sam-message><script>alert(1)</script>[x](javascript:alert(1))</x-lnx-ui::sam-message>');
+
+    expect($html)
+        ->not->toContain('<script>')
+        ->not->toContain('javascript:');
+});
+
 it('renders clickable citations on an assistant message', function () {
     $citations = [
         ['type' => 'help', 'slug' => 'invitar', 'title' => 'How to invite people', 'url' => 'https://example.test/help/invitar'],

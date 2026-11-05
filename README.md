@@ -92,7 +92,7 @@ Las cadenas de la galería viven en el namespace `lnx-ui::design-gallery` (`lang
 | `x-lnx-ui::rich-text-editor` | `value`, `label`, `placeholder`, `disabled`; slot `actions`; usa `wire:model`/`x-model` |
 | `x-lnx-ui::sam-trigger` | `label`, `shortcut`; emite `sam-open` |
 | `x-lnx-ui::sam-panel` | `open` y `close` (expresiones Alpine), `title`, `subtitle`, `label`, `dock`, `preview`; slots `actions`, `context`, `footer` y contenido |
-| `x-lnx-ui::sam-message` | `role` (`assistant`/`user`), `name`, `copy`, `citations`, `sources`, `time` |
+| `x-lnx-ui::sam-message` | `role` (`assistant`/`user`), `name`, `copy`, `citations`, `sources`, `time`, `markdown` (por defecto `true` para el asistente, `false` para el usuario) |
 | `x-lnx-ui::sam-signals` | `observations`, `actions`, `observationLimit`, `actionLimit`; bloque compartido por `sam-brief` y `sam-insight` |
 | `x-lnx-ui::sam-context-chip` | `label`, `source`, `icon` |
 | `x-lnx-ui::sam-suggestions` | `items` (array), `label`; emite `sam-suggestion` |

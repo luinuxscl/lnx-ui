@@ -5,10 +5,18 @@
     'citations' => [],
     'sources' => true,
     'time' => null,
+    'markdown' => null,
 ])
 
 @php
     $isUser = $role === 'user';
+    $markdown ??= ! $isUser;
+    $body = $markdown
+        ? \Illuminate\Support\Str::markdown((string) $slot, [
+            'html_input' => 'strip',
+            'allow_unsafe_links' => false,
+        ])
+        : null;
     $links = collect($citations)->filter(
         fn ($citation) => is_array($citation)
             && is_string($citation['url'] ?? null)
@@ -40,7 +48,26 @@
             </span>
         @endif
 
-        <div x-ref="content" class="whitespace-pre-line">{{ $slot }}</div>
+        <div
+            x-ref="content"
+            @class([
+                'text-sm leading-relaxed [&>*:first-child]:mt-0 [&>*:last-child]:mb-0',
+                'whitespace-pre-line' => ! $markdown,
+                '[&_a]:font-medium [&_a]:underline [&_a]:underline-offset-2' => $markdown,
+                '[&_blockquote]:border-s-2 [&_blockquote]:border-zinc-300 [&_blockquote]:ps-2 [&_blockquote]:text-zinc-600 dark:[&_blockquote]:border-zinc-600 dark:[&_blockquote]:text-zinc-300' => $markdown,
+                '[&_code]:rounded [&_code]:bg-zinc-200 [&_code]:px-1 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-[0.8em] dark:[&_code]:bg-zinc-700' => $markdown,
+                '[&_h1]:mt-3 [&_h1]:mb-1 [&_h1]:text-base [&_h1]:font-semibold [&_h2]:mt-3 [&_h2]:mb-1 [&_h2]:text-sm [&_h2]:font-semibold [&_h3]:mt-2 [&_h3]:mb-1 [&_h3]:text-sm [&_h3]:font-semibold' => $markdown,
+                '[&_hr]:my-2 [&_hr]:border-zinc-300 dark:[&_hr]:border-zinc-600' => $markdown,
+                '[&_li]:mt-1 [&_ol]:mt-2 [&_ol]:list-decimal [&_ol]:ps-5 [&_p+p]:mt-2 [&_strong]:font-semibold [&_ul]:mt-2 [&_ul]:list-disc [&_ul]:ps-5' => $markdown,
+                '[&_pre]:mt-2 [&_pre]:overflow-x-auto [&_pre]:rounded-lg [&_pre]:bg-zinc-900 [&_pre]:p-2 [&_pre]:text-xs [&_pre_code]:bg-transparent [&_pre_code]:p-0' => $markdown,
+            ])
+        >{{-- Deliberately unescaped: Markdown output is sanitized by Str::markdown. --}}
+            @if ($markdown)
+                {!! $body !!}
+            @else
+                {{ $slot }}
+            @endif
+        </div>
 
         @if ($sources && ! $isUser && $links->isNotEmpty())
             <div class="mt-2 border-t border-zinc-200 pt-1.5 dark:border-zinc-700" data-sam-citations>
