@@ -26,6 +26,7 @@ return [
     'sam_subtitle' => 'Agente de plataforma',
     'sam_close' => 'Cerrar',
     'sam_context' => 'Pantalla actual',
+    'sam_conversation' => 'Conversación con Sam',
     'sam_suggestions' => 'Sugerencias de Sam',
     'sam_empty_title' => '¿En qué te ayudo?',
     'sam_empty_body' => 'Puedo leer lo que tienes permiso de ver, proponer cambios y preparar borradores. Tú confirmas.',

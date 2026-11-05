@@ -206,6 +206,10 @@ return [
     'sam_sample_proposal_summary' => 'Changes the contact phone number.',
     'sam_sample_field' => 'Phone',
     'sam_sample_notice' => 'Sam is not configured or the model does not support tools.',
+    'sam_sample_preferences' => 'Preferences',
+    'sam_sample_new' => 'New conversation',
+    'sam_sample_streaming' => 'I am looking up the phone number in the record…',
+    'sam_sample_streaming_hint' => 'While the turn runs, the text renders inside the same bubble as the stored answer.',
     'sam_sample_brief' => [
         'label' => 'Ana Pérez',
         'resourceLabel' => 'Contact',

@@ -40,6 +40,26 @@ it('renders the sam panel as a responsive dialog with slots', function () {
         ->and(html_entity_decode($html))->toContain('$wire.set(\'open\', false)');
 });
 
+it('renders the sam panel actions slot next to the title', function () {
+    $html = Blade::render(<<<'BLADE'
+        <x-lnx-ui::sam-panel title="Sam" close="close()">
+            <x-slot:actions><button data-test-action>settings</button></x-slot:actions>
+            <p>conversation</p>
+        </x-lnx-ui::sam-panel>
+    BLADE);
+
+    expect($html)->toContain('data-test-action')->toContain('settings');
+});
+
+it('renders a timestamp on a message', function () {
+    $html = Blade::render('<x-lnx-ui::sam-message :time="now()->setTime(9, 5)">hello</x-lnx-ui::sam-message>');
+
+    expect($html)
+        ->toContain('data-sam-message-time')
+        ->toContain('datetime="')
+        ->toContain('09:05');
+});
+
 it('renders the sam panel in preview mode without an overlay', function () {
     $html = Blade::render('<x-lnx-ui::sam-panel preview title="Sam"><p>conversation</p></x-lnx-ui::sam-panel>');
 
@@ -65,8 +85,8 @@ it('renders user and assistant message bubbles', function () {
     $user = Blade::render('<x-lnx-ui::sam-message role="user">hello</x-lnx-ui::sam-message>');
     $assistant = Blade::render('<x-lnx-ui::sam-message>hi</x-lnx-ui::sam-message>');
 
-    expect($user)->toContain('bg-violet-600')->toContain('hello')->toContain('justify-end')
-        ->and($assistant)->toContain('bg-zinc-100')->toContain('hi')->toContain('justify-start');
+    expect($user)->toContain('bg-accent')->toContain('text-accent-foreground')->toContain('hello')->toContain('justify-end')->toContain('data-sam-message')
+        ->and($assistant)->toContain('bg-zinc-100')->toContain('hi')->toContain('justify-start')->toContain('data-sam-message');
 });
 
 it('renders the context chip with label and source', function () {
@@ -238,6 +258,26 @@ it('renders no trace when the turn has no entries', function () {
         ->not->toContain('data-sam-trace');
 });
 
+it('renders the shared signals block for observations and actions', function () {
+    $actions = [
+        (object) ['label' => 'Complete profile', 'description' => 'Missing owner.', 'url' => '#'],
+    ];
+
+    $html = Blade::render(
+        '<x-lnx-ui::sam-signals :observations="$observations" :actions="$actions" :observation-limit="1" />',
+        ['observations' => ['No company.', 'No owner.'], 'actions' => $actions],
+    );
+
+    expect($html)
+        ->toContain('What I see')
+        ->toContain('No company.')
+        ->not->toContain('No owner.')
+        ->toContain('and 1 more')
+        ->toContain('What you can do')
+        ->toContain('Complete profile')
+        ->toContain('text-accent-content');
+});
+
 it('documents the sam surface in the design gallery', function () {
     $html = view('lnx-ui::design-gallery')->render();
 
@@ -250,5 +290,7 @@ it('documents the sam surface in the design gallery', function () {
         ->toContain('x-lnx-ui::sam-trigger')
         ->toContain('x-lnx-ui::sam-proposal-card')
         ->toContain('x-lnx-ui::sam-trace')
+        ->toContain('x-lnx-ui::sam-signals')
+        ->toContain('data-sam-streaming-sample')
         ->toContain('Sam surface');
 });

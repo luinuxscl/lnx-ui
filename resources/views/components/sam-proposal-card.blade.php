@@ -17,6 +17,12 @@
     $statusLabel = \Illuminate\Support\Facades\Lang::has('lnx-ui::components.sam_proposal_statuses.'.$state)
         ? __('lnx-ui::components.sam_proposal_statuses.'.$state)
         : $state;
+    $badgeColor = match (true) {
+        $state === 'confirmed' => 'green',
+        in_array($state, ['pending', 'draft', 'proposed'], true) => 'amber',
+        $state === 'duplicate' => 'zinc',
+        default => 'red',
+    };
     $phraseId = 'sam-phrase-'.\Illuminate\Support\Str::slug($source.'-'.$id);
 @endphp
 
@@ -33,15 +39,9 @@
             @endif
         </div>
 
-        <span @class([
-            'shrink-0 rounded-full px-2 py-0.5 text-[11px] font-medium',
-            'bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300' => $state === 'confirmed',
-            'bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300' => in_array($state, ['pending', 'draft', 'proposed'], true),
-            'bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300' => $state === 'duplicate',
-            'bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300' => in_array($state, ['failed', 'expired'], true),
-        ])>
+        <flux:badge :color="$badgeColor" size="sm" class="shrink-0" data-sam-proposal-status>
             {{ $statusLabel }}
-        </span>
+        </flux:badge>
     </header>
 
     @if ($changes !== [])
@@ -79,7 +79,7 @@
             @if (filled($recordUrl))
                 <a
                     href="{{ $recordUrl }}"
-                    class="font-medium text-violet-600 hover:text-violet-700 dark:text-violet-400 dark:hover:text-violet-300"
+                    class="font-medium text-accent-content underline-offset-2 hover:underline"
                 >
                     {{ __('lnx-ui::components.sam_proposal_view_record') }}
                 </a>
@@ -104,7 +104,7 @@
                     spellcheck="false"
                     maxlength="64"
                     placeholder="{{ __('lnx-ui::components.sam_proposal_phrase_placeholder') }}"
-                    class="min-w-0 flex-1 rounded-lg border border-zinc-300 bg-white px-2 py-1.5 font-mono text-xs text-zinc-900 placeholder:font-sans placeholder:text-zinc-400 focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/30 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder:text-zinc-500"
+                    class="min-w-0 flex-1 rounded-lg border border-zinc-300 bg-white px-2 py-1.5 font-mono text-xs text-zinc-900 placeholder:font-sans placeholder:text-zinc-400 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder:text-zinc-500"
                 />
 
                 <flux:button
