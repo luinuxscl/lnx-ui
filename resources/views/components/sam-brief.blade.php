@@ -1,8 +1,33 @@
 @props([
     'brief',
+    'narrativeUrl' => null,
 ])
 
-<div {{ $attributes->class('space-y-3 text-sm text-zinc-700 dark:text-zinc-300') }}>
+@php($narrativeEndpoint = filled($narrativeUrl) ? $narrativeUrl : data_get($brief, 'narrativeUrl'))
+
+<div
+    {{ $attributes->class('space-y-3 text-sm text-zinc-700 dark:text-zinc-300') }}
+    @if (filled($narrativeEndpoint))
+        x-data="{ narrative: @js($brief->narrative) }"
+        x-init="
+            const key = 'sam-brief-narrative:' + @js($narrativeEndpoint);
+            if (! sessionStorage.getItem(key)) {
+                fetch(@js($narrativeEndpoint), { headers: { Accept: 'application/json' }, credentials: 'same-origin' })
+                    .then((response) => response.status === 200 ? response.json() : null)
+                    .then((payload) => {
+                        if (payload && typeof payload.narrative === 'string' && payload.narrative.trim() !== '') {
+                            narrative = payload.narrative;
+                        }
+                    })
+                    .catch(() => {})
+                    .finally(() => sessionStorage.setItem(key, '1'));
+            }
+        "
+    @else
+        x-data="{ narrative: @js($brief->narrative) }"
+    @endif
+    data-sam-brief
+>
     <div>
         <h3 class="text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
             {{ __('lnx-ui::components.sam_brief.title') }}
@@ -18,7 +43,12 @@
         @endif
 
         @if (filled($brief->narrative))
-            <p class="mt-1 whitespace-pre-line" aria-live="polite">{{ $brief->narrative }}</p>
+            <p
+                class="mt-1 whitespace-pre-line"
+                aria-live="polite"
+                data-sam-brief-narrative
+                x-text="narrative"
+            >{{ $brief->narrative }}</p>
         @endif
 
         <h4 class="mt-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">

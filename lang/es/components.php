@@ -62,6 +62,7 @@ return [
     'sam_message' => [
         'copy' => 'Copiar',
         'copied' => 'Copiado',
+        'sources' => 'Fuentes',
     ],
 
     'sam_trace' => [

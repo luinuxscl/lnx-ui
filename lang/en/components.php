@@ -62,6 +62,7 @@ return [
     'sam_message' => [
         'copy' => 'Copy',
         'copied' => 'Copied',
+        'sources' => 'Sources',
     ],
 
     'sam_trace' => [
