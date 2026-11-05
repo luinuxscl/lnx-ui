@@ -156,6 +156,50 @@ it('rejects confirmation input for an expired proposal', function () {
         ->not->toContain('Confirm</');
 });
 
+it('renders a copy action on an assistant message', function () {
+    $html = Blade::render('<x-lnx-ui::sam-message copy>Hello there</x-lnx-ui::sam-message>');
+
+    expect($html)
+        ->toContain('data-sam-copy')
+        ->toContain('navigator.clipboard')
+        ->toContain('Copy')
+        ->toContain('Hello there');
+});
+
+it('renders no copy action by default', function () {
+    expect(Blade::render('<x-lnx-ui::sam-message>Hello there</x-lnx-ui::sam-message>'))
+        ->not->toContain('data-sam-copy');
+});
+
+it('renders the turn trace with its entries and activity link', function () {
+    $trace = (object) [
+        'activityUrl' => 'https://example.test/crm/agent-activity?turn=abc',
+        'entries' => [
+            (object) ['tool' => 'crm_get_contact', 'label' => 'Ada Lovelace', 'kind' => 'read', 'status' => 'read', 'resource' => 'contact', 'count' => 1, 'url' => 'https://example.test/crm/contacts/1'],
+            (object) ['tool' => 'sam_confirm', 'label' => 'Acme', 'kind' => 'denied', 'status' => 'denied', 'resource' => 'company', 'count' => null, 'url' => null],
+        ],
+    ];
+
+    $html = Blade::render('<x-lnx-ui::sam-trace :trace="$trace" />', ['trace' => $trace]);
+
+    expect($html)
+        ->toContain('data-sam-trace')
+        ->toContain('What I read in this turn')
+        ->toContain('Ada Lovelace')
+        ->toContain('1 result')
+        ->toContain('Denied')
+        ->toContain('Open record')
+        ->toContain('See activity')
+        ->toContain('turn=abc');
+});
+
+it('renders no trace when the turn has no entries', function () {
+    $trace = (object) ['activityUrl' => null, 'entries' => []];
+
+    expect(Blade::render('<x-lnx-ui::sam-trace :trace="$trace" />', ['trace' => $trace]))
+        ->not->toContain('data-sam-trace');
+});
+
 it('documents the sam surface in the design gallery', function () {
     $html = view('lnx-ui::design-gallery')->render();
 
@@ -167,5 +211,6 @@ it('documents the sam surface in the design gallery', function () {
         ->toContain('x-lnx-ui::sam-panel')
         ->toContain('x-lnx-ui::sam-trigger')
         ->toContain('x-lnx-ui::sam-proposal-card')
+        ->toContain('x-lnx-ui::sam-trace')
         ->toContain('Sam surface');
 });
