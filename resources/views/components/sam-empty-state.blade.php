@@ -13,7 +13,9 @@
     {{ $attributes->class('flex h-full min-h-64 flex-col items-center justify-center gap-3 px-4 text-center') }}
     role="status"
 >
-    <flux:icon :icon="$icon" class="size-8 text-violet-400" />
+    <span class="rounded-full bg-accent/10 p-3">
+        <flux:icon :icon="$icon" class="size-8 text-accent-content" />
+    </span>
 
     <p class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">{{ $title }}</p>
     <p class="text-sm text-zinc-500 dark:text-zinc-400">{{ $body }}</p>

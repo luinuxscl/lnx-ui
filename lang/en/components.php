@@ -26,6 +26,7 @@ return [
     'sam_subtitle' => 'Platform agent',
     'sam_close' => 'Close',
     'sam_context' => 'Current screen',
+    'sam_conversation' => 'Conversation with Sam',
     'sam_suggestions' => 'Sam suggestions',
     'sam_empty_title' => 'How can I help?',
     'sam_empty_body' => 'I can read what you are allowed to see, propose changes and prepare drafts. You confirm them.',

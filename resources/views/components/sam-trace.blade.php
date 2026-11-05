@@ -19,7 +19,7 @@
         <summary class="flex cursor-pointer items-center gap-2 text-xs font-medium text-zinc-600 dark:text-zinc-300">
             <flux:icon icon="magnifying-glass" class="size-3.5 shrink-0 text-zinc-400" />
             <span>{{ __('lnx-ui::components.sam_trace.title') }}</span>
-            <span class="rounded-full bg-zinc-200 px-1.5 py-0.5 text-[0.65rem] font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-200">
+            <span class="rounded-full bg-accent/10 px-1.5 py-0.5 text-[0.65rem] font-semibold text-accent-content">
                 {{ count($trace->entries) }}
             </span>
         </summary>
@@ -56,7 +56,7 @@
                     @endif
 
                     @if (filled($entry->url))
-                        <a href="{{ $entry->url }}" class="ms-auto text-xs font-medium text-violet-600 underline dark:text-violet-400">
+                        <a href="{{ $entry->url }}" class="ms-auto text-xs font-medium text-accent-content underline underline-offset-2 hover:underline-offset-4">
                             {{ __('lnx-ui::components.sam_trace.open') }}
                         </a>
                     @endif
@@ -65,7 +65,7 @@
         </ul>
 
         @if (filled($trace->activityUrl))
-            <a href="{{ $trace->activityUrl }}" class="mt-2 inline-flex text-xs font-medium text-violet-600 underline dark:text-violet-400">
+            <a href="{{ $trace->activityUrl }}" class="mt-2 inline-flex text-xs font-medium text-accent-content underline underline-offset-2 hover:underline-offset-4">
                 {{ __('lnx-ui::components.sam_trace.activity') }}
             </a>
         @endif

@@ -91,14 +91,17 @@ Las cadenas de la galería viven en el namespace `lnx-ui::design-gallery` (`lang
 | `x-lnx-ui::mail-viewer` | `sender`, `email`, `avatar`, `subject`, `date`; slots `actions`, `attachments`, `reply`, `footer` y el cuerpo por defecto |
 | `x-lnx-ui::rich-text-editor` | `value`, `label`, `placeholder`, `disabled`; slot `actions`; usa `wire:model`/`x-model` |
 | `x-lnx-ui::sam-trigger` | `label`, `shortcut`; emite `sam-open` |
-| `x-lnx-ui::sam-panel` | `open` y `close` (expresiones Alpine), `title`, `subtitle`, `label`, `preview`; slots `context`, `footer` y contenido |
-| `x-lnx-ui::sam-message` | `role` (`assistant`/`user`), `name` |
+| `x-lnx-ui::sam-panel` | `open` y `close` (expresiones Alpine), `title`, `subtitle`, `label`, `dock`, `preview`; slots `actions`, `context`, `footer` y contenido |
+| `x-lnx-ui::sam-message` | `role` (`assistant`/`user`), `name`, `copy`, `citations`, `sources`, `time` |
+| `x-lnx-ui::sam-signals` | `observations`, `actions`, `observationLimit`, `actionLimit`; bloque compartido por `sam-brief` y `sam-insight` |
 | `x-lnx-ui::sam-context-chip` | `label`, `source`, `icon` |
 | `x-lnx-ui::sam-suggestions` | `items` (array), `label`; emite `sam-suggestion` |
 | `x-lnx-ui::sam-empty-state` | `title`, `body`, `icon`; slot para acciones o sugerencias |
 | `x-lnx-ui::sam-notice` | `variant` (`secondary`, `success`, `warning`, `danger`), `icon` |
 | `x-lnx-ui::sam-typing` | `label` |
 | `x-lnx-ui::sam-proposal-card` | `source`, `id`, `title`, `summary`, `changes`, `status`, `expiresAt`, `recordUrl`, `canConfirm`; emite `sam-confirm` |
+
+Los componentes de Sam toman el color del tema del anfitrión a través de los tokens `accent` (`--color-accent`, `--color-accent-content`, `--color-accent-foreground`). Una app derivada debe definirlos —el kit lo hace en `resources/css/app.css`— o los acentos caerán al valor por defecto de Tailwind. Los colores semánticos de la tarjeta de propuesta (`green`, `amber`, `zinc`, `red`) no dependen del tema.
 
 Los componentes de Sam son presentacionales y **no dependen de Livewire**. El host conecta el estado y los turnos escuchando eventos DOM: `sam-open` (abrir el panel), `sam-confirm` (`{ source, id, phrase }` para confirmar un borrador) y `sam-suggestion` (`{ text }` para rellenar la entrada). Tras confirmar, el host emite `sam-phrase-consumed` para limpiar el campo de frase. La frase nunca forma parte del HTML persistido.
 

@@ -206,6 +206,10 @@ return [
     'sam_sample_proposal_summary' => 'Cambia el teléfono del contacto.',
     'sam_sample_field' => 'Teléfono',
     'sam_sample_notice' => 'Sam no está configurado o el modelo no admite herramientas.',
+    'sam_sample_preferences' => 'Preferencias',
+    'sam_sample_new' => 'Nueva conversación',
+    'sam_sample_streaming' => 'Estoy buscando el teléfono en la ficha…',
+    'sam_sample_streaming_hint' => 'Durante el turno, el texto se pinta dentro de la misma burbuja que la respuesta guardada.',
     'sam_sample_brief' => [
         'label' => 'Ana Pérez',
         'resourceLabel' => 'Contacto',

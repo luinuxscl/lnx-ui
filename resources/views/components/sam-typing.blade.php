@@ -9,7 +9,7 @@
     role="status"
     aria-label="{{ $label }}"
 >
-    <span class="size-1.5 animate-bounce rounded-full bg-zinc-400 [animation-delay:-0.3s]"></span>
-    <span class="size-1.5 animate-bounce rounded-full bg-zinc-400 [animation-delay:-0.15s]"></span>
-    <span class="size-1.5 animate-bounce rounded-full bg-zinc-400"></span>
+    <span class="size-1.5 animate-bounce rounded-full bg-accent/60 [animation-delay:-0.3s]"></span>
+    <span class="size-1.5 animate-bounce rounded-full bg-accent/60 [animation-delay:-0.15s]"></span>
+    <span class="size-1.5 animate-bounce rounded-full bg-accent/60"></span>
 </div>
