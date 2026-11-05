@@ -46,4 +46,16 @@ return [
     'sam_proposal_phrase_label' => 'Confirmation phrase',
     'sam_proposal_phrase_placeholder' => 'CONFIRM …',
     'sam_proposal_phrase_hint' => 'Type the one-time phrase shown by the draft. It is not stored in the conversation.',
+
+    'sam_brief' => [
+        'title' => 'Sam summary',
+        'what_i_see' => 'What I see',
+        'what_you_can_do' => 'What you can do',
+        'see_more' => 'See more',
+        'hide' => 'Hide',
+        'no_signals' => 'No points of attention.',
+        'more' => 'and :count more',
+        'continue' => 'Continue in Sam',
+        'deepen' => 'Go deeper',
+    ],
 ];

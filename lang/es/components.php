@@ -46,4 +46,16 @@ return [
     'sam_proposal_phrase_label' => 'Frase de confirmación',
     'sam_proposal_phrase_placeholder' => 'CONFIRM …',
     'sam_proposal_phrase_hint' => 'Escribe la frase de un solo uso que mostró el borrador. No se guarda en la conversación.',
+
+    'sam_brief' => [
+        'title' => 'Resumen de Sam',
+        'what_i_see' => 'Qué veo',
+        'what_you_can_do' => 'Qué puedes hacer',
+        'see_more' => 'Ver más',
+        'hide' => 'Ocultar',
+        'no_signals' => 'Sin puntos de atención.',
+        'more' => 'y :count más',
+        'continue' => 'Continuar en Sam',
+        'deepen' => 'Profundizar',
+    ],
 ];

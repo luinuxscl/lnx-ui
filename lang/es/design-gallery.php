@@ -206,4 +206,20 @@ return [
     'sam_sample_proposal_summary' => 'Cambia el teléfono del contacto.',
     'sam_sample_field' => 'Teléfono',
     'sam_sample_notice' => 'Sam no está configurado o el modelo no admite herramientas.',
+    'sam_sample_brief' => [
+        'label' => 'Ana Pérez',
+        'resourceLabel' => 'Contacto',
+        'narrative' => 'Ana Pérez no tiene empresa ni propietario asignados. Su correo aparece en 2 contactos más, así que conviene revisar si son duplicados antes de escribirle.',
+        'observations' => [
+            'Sin empresa asignada.',
+            'Sin propietario asignado.',
+            'Hay 2 contactos más con este correo.',
+        ],
+        'actions' => [
+            ['key' => 'complete_contact_profile', 'label' => 'Completar ficha', 'description' => 'Faltan empresa y propietario.', 'url' => '#'],
+            ['key' => 'compare_email_duplicates', 'label' => 'Comparar duplicados', 'description' => 'Evita escribir al contacto equivocado.', 'url' => '#'],
+        ],
+        'evidence' => '#',
+        'continuePrompt' => 'Ayúdame a completar la ficha de Ana Pérez.',
+    ],
 ];

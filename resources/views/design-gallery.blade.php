@@ -943,6 +943,27 @@
                     :can-confirm="true"
                 />
             </div>
+
+            @php
+                $samSample = __('lnx-ui::design-gallery.sam_sample_brief');
+                $samSample['actions'] = array_map(fn (array $action): object => (object) $action, $samSample['actions']);
+                $samSampleBrief = (object) $samSample;
+                $samSampleInsight = (object) array_merge($samSample, ['deepenUrl' => '#']);
+            @endphp
+
+            <div class="grid grid-cols-12 gap-4">
+                <div class="col-span-12 rounded-xl border border-zinc-200 p-4 lg:col-span-6 dark:border-zinc-800">
+                    <flux:heading level="3"><code class="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-sm dark:bg-zinc-800">x-lnx-ui::sam-brief</code></flux:heading>
+
+                    <x-lnx-ui::sam-brief :brief="$samSampleBrief" class="mt-3" />
+                </div>
+
+                <div class="col-span-12 rounded-xl border border-zinc-200 p-4 lg:col-span-6 dark:border-zinc-800">
+                    <flux:heading level="3"><code class="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-sm dark:bg-zinc-800">x-lnx-ui::sam-insight</code></flux:heading>
+
+                    <x-lnx-ui::sam-insight :insight="$samSampleInsight" class="mt-3" />
+                </div>
+            </div>
         </section>
 
         <section id="messaging" class="scroll-mt-24 space-y-4" aria-label="{{ __('lnx-ui::design-gallery.messaging') }}">
