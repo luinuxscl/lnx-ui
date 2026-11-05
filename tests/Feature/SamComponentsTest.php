@@ -171,6 +171,44 @@ it('renders no copy action by default', function () {
         ->not->toContain('data-sam-copy');
 });
 
+it('renders clickable citations on an assistant message', function () {
+    $citations = [
+        ['type' => 'help', 'slug' => 'invitar', 'title' => 'How to invite people', 'url' => 'https://example.test/help/invitar'],
+        ['type' => 'web', 'title' => 'Laravel docs', 'url' => 'https://laravel.com/docs'],
+    ];
+
+    $html = Blade::render(
+        '<x-lnx-ui::sam-message :citations="$citations">Answer</x-lnx-ui::sam-message>',
+        ['citations' => $citations],
+    );
+
+    expect($html)
+        ->toContain('data-sam-citations')
+        ->toContain('Sources')
+        ->toContain('href="https://example.test/help/invitar"')
+        ->toContain('How to invite people')
+        ->toContain('target="_blank"')
+        ->toContain('rel="noopener noreferrer"');
+});
+
+it('hides the citations when sources are disabled', function () {
+    $citations = [['type' => 'help', 'title' => 'Help', 'url' => 'https://example.test/help']];
+
+    expect(Blade::render(
+        '<x-lnx-ui::sam-message :citations="$citations" :sources="false">Answer</x-lnx-ui::sam-message>',
+        ['citations' => $citations],
+    ))->not->toContain('data-sam-citations');
+});
+
+it('drops citations without a web url', function () {
+    $citations = [['type' => 'help', 'title' => 'Broken', 'url' => 'javascript:alert(1)']];
+
+    expect(Blade::render(
+        '<x-lnx-ui::sam-message :citations="$citations">Answer</x-lnx-ui::sam-message>',
+        ['citations' => $citations],
+    ))->not->toContain('data-sam-citations');
+});
+
 it('renders the turn trace with its entries and activity link', function () {
     $trace = (object) [
         'activityUrl' => 'https://example.test/crm/agent-activity?turn=abc',
