@@ -58,4 +58,28 @@ return [
         'continue' => 'Continue in Sam',
         'deepen' => 'Go deeper',
     ],
+
+    'sam_message' => [
+        'copy' => 'Copy',
+        'copied' => 'Copied',
+    ],
+
+    'sam_trace' => [
+        'title' => 'What I read in this turn',
+        'results' => ':count result|:count results',
+        'open' => 'Open record',
+        'activity' => 'See activity',
+        'kind' => [
+            'read' => 'Read',
+            'proposal' => 'Proposal',
+            'confirmation' => 'Confirmation',
+            'denied' => 'Denied',
+        ],
+        'status' => [
+            'denied' => 'Denied',
+            'invalid' => 'Invalid',
+            'failed' => 'Failed',
+            'duplicate' => 'Duplicate',
+        ],
+    ],
 ];

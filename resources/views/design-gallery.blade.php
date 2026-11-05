@@ -864,7 +864,7 @@
                         {{ __('lnx-ui::design-gallery.sam_sample_user') }}
                     </x-lnx-ui::sam-message>
 
-                    <x-lnx-ui::sam-message>
+                    <x-lnx-ui::sam-message copy>
                         {{ __('lnx-ui::design-gallery.sam_sample_assistant') }}
                     </x-lnx-ui::sam-message>
 
@@ -949,6 +949,14 @@
                 $samSample['actions'] = array_map(fn (array $action): object => (object) $action, $samSample['actions']);
                 $samSampleBrief = (object) $samSample;
                 $samSampleInsight = (object) array_merge($samSample, ['deepenUrl' => '#']);
+                $samSampleTrace = (object) [
+                    'activityUrl' => '#',
+                    'entries' => [
+                        (object) ['tool' => 'crm_search_crm', 'label' => 'Ada Lovelace', 'kind' => 'read', 'status' => 'read', 'resource' => 'contact', 'count' => 3, 'url' => '#'],
+                        (object) ['tool' => 'crm_get_contact', 'label' => 'Ada Lovelace', 'kind' => 'read', 'status' => 'read', 'resource' => 'contact', 'count' => 1, 'url' => '#'],
+                        (object) ['tool' => 'sam_confirm', 'label' => 'Acme', 'kind' => 'denied', 'status' => 'denied', 'resource' => 'company', 'count' => null, 'url' => null],
+                    ],
+                ];
             @endphp
 
             <div class="grid grid-cols-12 gap-4">
@@ -962,6 +970,12 @@
                     <flux:heading level="3"><code class="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-sm dark:bg-zinc-800">x-lnx-ui::sam-insight</code></flux:heading>
 
                     <x-lnx-ui::sam-insight :insight="$samSampleInsight" class="mt-3" />
+                </div>
+
+                <div class="col-span-12 rounded-xl border border-zinc-200 p-4 lg:col-span-6 dark:border-zinc-800">
+                    <flux:heading level="3"><code class="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-sm dark:bg-zinc-800">x-lnx-ui::sam-trace</code></flux:heading>
+
+                    <x-lnx-ui::sam-trace :trace="$samSampleTrace" class="mt-3" />
                 </div>
             </div>
         </section>

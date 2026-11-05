@@ -58,4 +58,27 @@ return [
         'continue' => 'Continuar en Sam',
         'deepen' => 'Profundizar',
     ],
+
+    'sam_message' => [
+        'copy' => 'Copiar',
+        'copied' => 'Copiado',
+    ],
+
+    'sam_trace' => [
+        'title' => 'Lo que leí en este turno',        'results' => ':count resultado|:count resultados',
+        'open' => 'Ver registro',
+        'activity' => 'Ver actividad',
+        'kind' => [
+            'read' => 'Lectura',
+            'proposal' => 'Propuesta',
+            'confirmation' => 'Confirmación',
+            'denied' => 'Denegada',
+        ],
+        'status' => [
+            'denied' => 'Denegada',
+            'invalid' => 'No válida',
+            'failed' => 'Fallida',
+            'duplicate' => 'Duplicada',
+        ],
+    ],
 ];
