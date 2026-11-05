@@ -50,10 +50,10 @@
         @if (! $dock) aria-labelledby="sam-panel-title" @endif
         aria-label="{{ $label }}"
     >
-        <header class="flex items-start justify-between gap-2 border-b border-zinc-200 px-4 pt-[calc(0.75rem+env(safe-area-inset-top))] pb-3 dark:border-zinc-800">
+        <header class="flex items-start justify-between gap-2 border-b border-zinc-200 px-4 pt-[calc(1rem+env(safe-area-inset-top))] pb-3 dark:border-zinc-800">
             <div class="flex min-w-0 items-center gap-2">
-                <flux:icon icon="sparkles" class="size-4 shrink-0 text-accent-content" />
-                <h2 id="sam-panel-title" class="truncate text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                <flux:icon icon="sparkles" class="size-5 shrink-0 text-accent-content" />
+                <h2 id="sam-panel-title" class="truncate text-base font-semibold text-zinc-900 dark:text-zinc-100">
                     {{ $title }}
                 </h2>
                 @if (filled($subtitle))
