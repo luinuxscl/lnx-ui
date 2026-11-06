@@ -176,6 +176,122 @@ it('rejects confirmation input for an expired proposal', function () {
         ->not->toContain('Confirm</');
 });
 
+it('defaults the risk to irreversible and labels it', function () {
+    $html = Blade::render(<<<'BLADE'
+        <x-lnx-ui::sam-proposal-card
+            source="crm"
+            id="draft-3"
+            title="Create contact"
+            :changes="[]"
+            status="pending"
+            :can-confirm="true"
+        />
+    BLADE);
+
+    expect($html)
+        ->toContain('data-sam-proposal-risk="irreversible"')
+        ->toContain('Irreversible')
+        ->toContain('Confirmation phrase');
+});
+
+it('confirms a reversible proposal with one click and no phrase field', function () {
+    $html = Blade::render(<<<'BLADE'
+        <x-lnx-ui::sam-proposal-card
+            source="crm"
+            id="draft-4"
+            title="Update phone"
+            :changes="[]"
+            status="pending"
+            risk="reversible"
+            :requires-phrase="false"
+            :can-confirm="true"
+        />
+    BLADE);
+
+    expect($html)
+        ->toContain('data-sam-proposal-risk="reversible"')
+        ->toContain('Reversible')
+        ->toContain('Confirms with one click')
+        ->toContain('sam-confirm')
+        ->not->toContain('Confirmation phrase')
+        ->not->toContain('sam-phrase-consumed');
+});
+
+it('keeps the phrase for a bulk proposal', function () {
+    $html = Blade::render(<<<'BLADE'
+        <x-lnx-ui::sam-proposal-card
+            source="crm"
+            id="draft-5"
+            title="Archive contacts"
+            :changes="[]"
+            status="pending"
+            risk="bulk"
+            :can-confirm="true"
+        />
+    BLADE);
+
+    expect($html)
+        ->toContain('data-sam-proposal-risk="bulk"')
+        ->toContain('Bulk change')
+        ->toContain('Confirmation phrase');
+});
+
+it('offers a one-shot undo on a confirmed proposal', function () {
+    $html = Blade::render(<<<'BLADE'
+        <x-lnx-ui::sam-proposal-card
+            source="crm"
+            id="draft-6"
+            title="Update phone"
+            :changes="[]"
+            status="confirmed"
+            risk="reversible"
+            :can-undo="true"
+            :undo-expires-at="now()->addMinutes(30)"
+        />
+    BLADE);
+
+    expect($html)
+        ->toContain('data-sam-proposal-undo')
+        ->toContain('Undo available')
+        ->toContain('sam-undo')
+        ->toContain('used = true')
+        ->toContain('Undo');
+});
+
+it('hides the undo when it is unavailable or the window elapsed', function () {
+    $withoutUndo = Blade::render(<<<'BLADE'
+        <x-lnx-ui::sam-proposal-card
+            source="crm"
+            id="draft-7"
+            title="Update phone"
+            :changes="[]"
+            status="confirmed"
+            risk="reversible"
+        />
+    BLADE);
+
+    $expiredUndo = Blade::render(<<<'BLADE'
+        <x-lnx-ui::sam-proposal-card
+            source="crm"
+            id="draft-8"
+            title="Update phone"
+            :changes="[]"
+            status="confirmed"
+            risk="reversible"
+            :can-undo="true"
+            :undo-expires-at="now()->subMinute()"
+        />
+    BLADE);
+
+    expect($withoutUndo)
+        ->not->toContain('data-sam-proposal-undo')
+        ->not->toContain('sam-undo');
+
+    expect($expiredUndo)
+        ->not->toContain('data-sam-proposal-undo')
+        ->not->toContain('sam-undo');
+});
+
 it('renders a copy action on an assistant message', function () {
     $html = Blade::render('<x-lnx-ui::sam-message copy>Hello there</x-lnx-ui::sam-message>');
 

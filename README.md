@@ -99,11 +99,13 @@ Las cadenas de la galería viven en el namespace `lnx-ui::design-gallery` (`lang
 | `x-lnx-ui::sam-empty-state` | `title`, `body`, `icon`; slot para acciones o sugerencias |
 | `x-lnx-ui::sam-notice` | `variant` (`secondary`, `success`, `warning`, `danger`), `icon` |
 | `x-lnx-ui::sam-typing` | `label` |
-| `x-lnx-ui::sam-proposal-card` | `source`, `id`, `title`, `summary`, `changes`, `status`, `expiresAt`, `recordUrl`, `canConfirm`; emite `sam-confirm` |
+| `x-lnx-ui::sam-proposal-card` | `source`, `id`, `title`, `summary`, `changes`, `status`, `expiresAt`, `recordUrl`, `canConfirm`, `risk` (`reversible`/`irreversible`/`bulk`, por defecto `irreversible`), `requiresPhrase` (por defecto, solo `reversible` la omite), `canUndo`, `undoExpiresAt`; emite `sam-confirm` y `sam-undo` |
 
 Los componentes de Sam toman el color del tema del anfitrión a través de los tokens `accent` (`--color-accent`, `--color-accent-content`, `--color-accent-foreground`). Una app derivada debe definirlos —el kit lo hace en `resources/css/app.css`— o los acentos caerán al valor por defecto de Tailwind. Los colores semánticos de la tarjeta de propuesta (`green`, `amber`, `zinc`, `red`) no dependen del tema.
 
-Los componentes de Sam son presentacionales y **no dependen de Livewire**. El host conecta el estado y los turnos escuchando eventos DOM: `sam-open` (abrir el panel), `sam-confirm` (`{ source, id, phrase }` para confirmar un borrador) y `sam-suggestion` (`{ text }` para rellenar la entrada). Tras confirmar, el host emite `sam-phrase-consumed` para limpiar el campo de frase. La frase nunca forma parte del HTML persistido.
+Los componentes de Sam son presentacionales y **no dependen de Livewire**. El host conecta el estado y los turnos escuchando eventos DOM: `sam-open` (abrir el panel), `sam-confirm` (`{ source, id, phrase }` para confirmar un borrador; `phrase` viaja vacía cuando la propuesta es reversible y el módulo declaró el undo) y `sam-suggestion` (`{ text }` para rellenar la entrada). Tras confirmar, el host emite `sam-phrase-consumed` para limpiar el campo de frase. La frase nunca forma parte del HTML persistido.
+
+La tarjeta muestra el riesgo de la propuesta y lo usa para decidir la confirmación: `reversible` se confirma con un clic, mientras `irreversible` y `bulk` piden la frase de un solo uso. Cuando el borrador ya se confirmó y su módulo conserva un undo vigente (`canUndo` y, si existe, `undoExpiresAt`), la tarjeta pinta un botón «Deshacer» de un solo uso que emite `sam-undo` (`{ source, id }`); el host vuelve a validar propiedad, ventana y frescura al ejecutarlo.
 
 `color` acepta `accent` (predeterminado), `violet`, `cyan`, `rose`, `emerald`, `blue` y `amber`.
 
