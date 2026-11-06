@@ -893,6 +893,8 @@
                             'new' => '+56 9 2222',
                         ]]"
                         status="pending"
+                        risk="reversible"
+                        :requires-phrase="false"
                         :expires-at="now()->addMinutes(30)"
                         record-url="#"
                         :can-confirm="true"
@@ -952,6 +954,29 @@
                     status="pending"
                     :expires-at="now()->subMinute()"
                     :can-confirm="true"
+                />
+            </div>
+
+            <div class="rounded-xl border border-zinc-200 p-4 dark:border-zinc-800">
+                <flux:heading level="3"><code class="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-sm dark:bg-zinc-800">x-lnx-ui::sam-proposal-card (confirmada con undo)</code></flux:heading>
+
+                <x-lnx-ui::sam-proposal-card
+                    class="mt-3"
+                    source="crm"
+                    id="demo-3"
+                    :title="__('lnx-ui::design-gallery.sam_sample_proposal_title')"
+                    :summary="__('lnx-ui::design-gallery.sam_sample_proposal_summary')"
+                    :changes="[[
+                        'field' => 'phone',
+                        'label' => __('lnx-ui::design-gallery.sam_sample_field'),
+                        'old' => '+56 9 1111',
+                        'new' => '+56 9 2222',
+                    ]]"
+                    status="confirmed"
+                    risk="reversible"
+                    :can-undo="true"
+                    :undo-expires-at="now()->addMinutes(30)"
+                    record-url="#"
                 />
             </div>
 
