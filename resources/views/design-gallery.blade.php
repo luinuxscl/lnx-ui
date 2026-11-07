@@ -8,7 +8,7 @@
         <nav aria-label="{{ __('lnx-ui::design-gallery.index') }}" class="rounded-xl border border-zinc-200 p-4 dark:border-zinc-800">
             <flux:heading level="2" size="sm">{{ __('lnx-ui::design-gallery.index') }}</flux:heading>
             <ul class="mt-3 grid grid-cols-2 gap-x-4 gap-y-1 font-mono text-sm sm:grid-cols-3 lg:grid-cols-4">
-                @foreach (['page-header', 'stat', 'stat-card', 'statistics-panel', 'trend-card', 'chart-card', 'metric-card', 'summary-card', 'tool-card', 'resource-card', 'properties-card', 'timeline', 'media-cell', 'chip', 'data-table', 'data-table-inline', 'placeholder-pattern', 'auth-header', 'auth-session-status', 'mail-list-item', 'attachment-card', 'presence-list', 'mail-viewer', 'rich-text-editor', 'sam', 'loading', 'empty-state', 'error-state', 'validation', 'actions-statuses', 'messaging'] as $anchor)
+                @foreach (['page-header', 'stat', 'stat-card', 'statistics-panel', 'widget', 'trend-card', 'chart-card', 'metric-card', 'summary-card', 'tool-card', 'resource-card', 'properties-card', 'timeline', 'media-cell', 'chip', 'data-table', 'data-table-inline', 'placeholder-pattern', 'auth-header', 'auth-session-status', 'mail-list-item', 'attachment-card', 'presence-list', 'mail-viewer', 'rich-text-editor', 'sam', 'loading', 'empty-state', 'error-state', 'validation', 'actions-statuses', 'messaging'] as $anchor)
                     <li><a href="#{{ $anchor }}" class="text-accent-content hover:underline">{{ $anchor }}</a></li>
                 @endforeach
             </ul>
@@ -109,6 +109,19 @@
                         <flux:text>{{ __('lnx-ui::design-gallery.no_metrics') }}</flux:text>
                     </x-slot:empty>
                 </x-lnx-ui::statistics-panel>
+            </div>
+
+            {{-- widget --}}
+            <div id="widget" class="scroll-mt-24 space-y-3">
+                <flux:heading level="3"><code class="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-sm dark:bg-zinc-800">x-lnx-ui::widget</code></flux:heading>
+
+                <div class="grid grid-cols-12 gap-4">
+                    <x-lnx-ui::widget :title="__('lnx-ui::design-gallery.statistics')" :description="__('lnx-ui::design-gallery.statistics_no_update')" href="#" span="6">
+                        <p class="text-sm text-zinc-500 dark:text-zinc-400">{{ __('lnx-ui::design-gallery.no_metrics') }}</p>
+                    </x-lnx-ui::widget>
+
+                    <x-lnx-ui::widget :title="__('lnx-ui::design-gallery.statistics_empty')" :empty="__('lnx-ui::design-gallery.no_metrics')" span="6" />
+                </div>
             </div>
 
             {{-- trend-card --}}

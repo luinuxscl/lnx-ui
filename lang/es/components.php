@@ -4,6 +4,9 @@ return [
     'select_message' => 'Seleccionar mensaje de',
     'star_message' => 'Destacar mensaje',
 
+    'widget_view_all' => 'Ver todo',
+    'widget_empty' => 'Aún no hay datos.',
+
     'rich_text_toolbar' => 'Formato',
     'rich_text_editor' => 'Editor de texto enriquecido',
     'rich_text_bold' => 'Negrita',

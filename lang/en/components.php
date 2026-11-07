@@ -4,6 +4,9 @@ return [
     'select_message' => 'Select message from',
     'star_message' => 'Star message',
 
+    'widget_view_all' => 'View all',
+    'widget_empty' => 'No data yet.',
+
     'rich_text_toolbar' => 'Formatting',
     'rich_text_editor' => 'Rich text editor',
     'rich_text_bold' => 'Bold',
