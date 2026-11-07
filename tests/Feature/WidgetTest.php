@@ -21,6 +21,14 @@ it('renders the empty state when the widget has no content', function () {
     expect($html)->toContain('No contacts yet.');
 });
 
+it('renders the empty state when the slot only carries livewire block markers', function () {
+    $html = Blade::render(
+        '<x-lnx-ui::widget title="Contacts" empty="No contacts yet."><!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></x-lnx-ui::widget>'
+    );
+
+    expect($html)->toContain('No contacts yet.');
+});
+
 it('renders the actions slot next to the title', function () {
     $html = Blade::render(
         '<x-lnx-ui::widget title="Contacts"><x-slot:actions><a href="/new">New</a></x-slot:actions><p>Body</p></x-lnx-ui::widget>'

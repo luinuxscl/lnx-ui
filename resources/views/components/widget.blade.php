@@ -61,7 +61,21 @@
             </div>
         @endif
 
-        @if ($slot->isEmpty())
+        @php
+            // Livewire wraps every Blade directive in HTML comments while it
+            // renders a component, so `$slot->isEmpty()` is never true even
+            // when the slot produced no visible output. Drop those markers
+            // before deciding: an empty widget must show its empty state.
+            $slotHtml = (string) $slot->toHtml();
+            $slotHtml = str_replace(
+                ['<!--[if BLOCK]><![endif]-->', '<!--[if ENDBLOCK]><![endif]-->'],
+                '',
+                $slotHtml,
+            );
+            $slotIsEmpty = trim($slotHtml) === '';
+        @endphp
+
+        @if ($slotIsEmpty)
             <p class="text-sm text-zinc-500 dark:text-zinc-400">{{ $empty ?? __('lnx-ui::components.widget_empty') }}</p>
         @else
             {{ $slot }}
