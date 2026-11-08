@@ -91,7 +91,8 @@ Las cadenas de la galería viven en el namespace `lnx-ui::design-gallery` (`lang
 | `x-lnx-ui::presence-list` | `title` (opcional), `users` (array de `name`, `avatar`, `line`, `online`) |
 | `x-lnx-ui::mail-viewer` | `sender`, `email`, `avatar`, `subject`, `date`; slots `actions`, `attachments`, `reply`, `footer` y el cuerpo por defecto |
 | `x-lnx-ui::rich-text-editor` | `value`, `label`, `placeholder`, `disabled`; slot `actions`; usa `wire:model`/`x-model` |
-| `x-lnx-ui::sam-trigger` | `label`, `shortcut`; emite `sam-open` |
+| `x-lnx-ui::sam-trigger` | `label`, `shortcut`, `count` (inicial); escucha `sam-badge-count`; emite `sam-open` |
+| `x-lnx-ui::sam-ambient-alerts` | `alerts` (bloque del panel Sam: revisar, descartar, silenciar, ocultar) |
 | `x-lnx-ui::sam-panel` | `open` y `close` (expresiones Alpine), `title`, `subtitle`, `label`, `dock`, `preview`; slots `actions`, `context`, `footer` y contenido |
 | `x-lnx-ui::sam-message` | `role` (`assistant`/`user`), `name`, `copy`, `citations`, `sources`, `time`, `markdown` (por defecto `true` para el asistente, `false` para el usuario) |
 | `x-lnx-ui::sam-signals` | `observations`, `actions`, `observationLimit`, `actionLimit`; bloque compartido por `sam-brief` y `sam-insight` |

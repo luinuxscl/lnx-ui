@@ -15,7 +15,16 @@ it('renders the sam trigger with its accessible label and shortcut', function ()
     expect($html)
         ->toContain('sam-open')
         ->toContain('aria-label="Open Sam"')
-        ->toContain('⌘J');
+        ->toContain('⌘J')
+        ->toContain('data-sam-trigger-badge');
+});
+
+it('renders the proactive badge count when provided', function () {
+    $html = Blade::render('<x-lnx-ui::sam-trigger :count="3" />');
+
+    expect($html)
+        ->toContain('data-sam-trigger-badge')
+        ->toContain('x-text="badge > 9');
 });
 
 it('renders the sam panel as a responsive dialog with slots', function () {
