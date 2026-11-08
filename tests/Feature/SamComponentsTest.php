@@ -27,6 +27,43 @@ it('renders the proactive badge count when provided', function () {
         ->toContain('x-text="badge > 9');
 });
 
+it('renders the ambient alerts with a link by default', function () {
+    $html = Blade::render(<<<'BLADE'
+        <x-lnx-ui::sam-ambient-alerts :alerts="[[
+            'source' => 'crm',
+            'resource' => 'contact',
+            'record_id' => '7',
+            'signal' => 'missing_channel',
+            'value' => 'missing',
+            'evidence' => '/crm/contacts/7',
+            'fingerprint' => 'abc',
+        ]]" />
+    BLADE);
+
+    expect($html)
+        ->toContain('data-sam-ambient-alerts')
+        ->toContain('href="/crm/contacts/7"')
+        ->not->toContain('acceptAmbientAlert');
+});
+
+it('routes the ambient review through the wire action when asked', function () {
+    $html = Blade::render(<<<'BLADE'
+        <x-lnx-ui::sam-ambient-alerts review-action="acceptAmbientAlert" :alerts="[[
+            'source' => 'crm',
+            'resource' => 'contact',
+            'record_id' => '7',
+            'signal' => 'missing_channel',
+            'value' => 'missing',
+            'evidence' => '/crm/contacts/7',
+            'fingerprint' => 'abc',
+        ]]" />
+    BLADE);
+
+    expect($html)
+        ->toContain('wire:click="acceptAmbientAlert(')
+        ->not->toContain('href="/crm/contacts/7"');
+});
+
 it('renders the sam panel as a responsive dialog with slots', function () {
     $html = Blade::render(<<<'BLADE'
         <x-lnx-ui::sam-panel title="Sam" open="$wire.open" close="$wire.set('open', false)">
