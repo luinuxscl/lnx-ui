@@ -24,6 +24,13 @@ return [
     'rich_text_redo' => 'Redo',
 
     'sam_trigger' => 'Open Sam',
+    'sam_ambient' => [
+        'title' => 'Alerts on this screen',
+        'review' => 'Review',
+        'dismiss' => 'Dismiss',
+        'silence' => 'Silence 7 days',
+        'hide' => 'Do not show again',
+    ],
     'sam_shortcut' => '⌘J / Ctrl+J',
     'sam_title' => 'Sam',
     'sam_subtitle' => 'Platform agent',

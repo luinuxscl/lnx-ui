@@ -24,6 +24,13 @@ return [
     'rich_text_redo' => 'Rehacer',
 
     'sam_trigger' => 'Abrir Sam',
+    'sam_ambient' => [
+        'title' => 'Avisos en esta pantalla',
+        'review' => 'Revisar',
+        'dismiss' => 'Descartar',
+        'silence' => 'Silenciar 7 días',
+        'hide' => 'No volver a mostrar',
+    ],
     'sam_shortcut' => '⌘J / Ctrl+J',
     'sam_title' => 'Sam',
     'sam_subtitle' => 'Agente de plataforma',
