@@ -1,5 +1,6 @@
 @props([
     'alerts' => [],
+    'reviewAction' => null,
 ])
 
 <div {{ $attributes->class(['space-y-2 rounded-lg border border-amber-200 bg-amber-50 p-3 dark:border-amber-900/50 dark:bg-amber-950/30']) }} data-sam-ambient-alerts>
@@ -22,7 +23,20 @@
                 </div>
 
                 <div class="flex flex-wrap items-center gap-2">
-                    @if (filled($alert['evidence'] ?? null))
+                    @if (is_string($reviewAction) && $reviewAction !== '')
+                        <flux:button
+                            size="xs"
+                            variant="ghost"
+                            wire:click="{{ $reviewAction }}(
+                                @js($alert['source']),
+                                @js($alert['resource']),
+                                @js($alert['record_id']),
+                                @js($alert['signal'])
+                            )"
+                        >
+                            {{ __('lnx-ui::components.sam_ambient.review') }}
+                        </flux:button>
+                    @elseif (filled($alert['evidence'] ?? null))
                         <flux:link :href="$alert['evidence']" size="sm" wire:navigate>
                             {{ __('lnx-ui::components.sam_ambient.review') }}
                         </flux:link>
