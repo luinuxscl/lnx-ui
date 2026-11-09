@@ -23,5 +23,7 @@ it('renders kanban columns and cards with a drag hook', function () {
         ->toContain('Licencia anual')
         ->toContain('Añadir una tarjeta')
         ->toContain('Sortable')
-        ->toContain('kanban-move');
+        ->toContain('kanban-move')
+        ->toContain('bindPan')
+        ->toContain('cursor-grab');
 });
