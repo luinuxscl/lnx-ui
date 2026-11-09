@@ -14,7 +14,21 @@
 @once
     <style>
         .lnx-kanban-ghost {
-            opacity: 0.35;
+            opacity: 1;
+            min-height: 4.5rem;
+            border-radius: 0 0 0.5rem 0.5rem;
+            border: 2px dashed rgb(161 161 170 / 0.85);
+            background: rgb(250 250 250 / 0.65);
+            box-shadow: none;
+        }
+
+        .dark .lnx-kanban-ghost {
+            border-color: rgb(82 82 91 / 0.9);
+            background: rgb(39 39 42 / 0.55);
+        }
+
+        .lnx-kanban-ghost > * {
+            visibility: hidden;
         }
 
         .lnx-kanban-chosen {

@@ -4,13 +4,17 @@
     'count' => null,
     'meta' => null,
     'metaTitle' => null,
+    'headerClass' => null,
 ])
 
 <section
     data-kanban-column="{{ $columnId }}"
-    {{ $attributes->class('flex h-full min-h-0 w-72 shrink-0 flex-col rounded-xl border border-zinc-200/80 bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-900/50') }}
+    {{ $attributes->class('flex h-full min-h-0 w-72 shrink-0 flex-col rounded-b-xl border border-zinc-200/80 bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-900/50') }}
 >
-    <header class="shrink-0 flex items-start gap-2 px-3 py-2.5">
+    <header @class([
+        'shrink-0 flex items-start gap-2 px-3 py-2.5',
+        $headerClass,
+    ])>
         <div class="min-w-0 flex-1">
             <div class="flex items-baseline justify-between gap-2">
                 <h3 class="truncate text-sm font-semibold text-zinc-900 dark:text-zinc-100">{{ $title }}</h3>
@@ -35,7 +39,7 @@
         @endisset
     </header>
 
-    <div data-kanban-list class="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto px-2 pb-2">
+    <div data-kanban-list class="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto px-2 pb-2 pt-4">
         {{ $slot }}
     </div>
 

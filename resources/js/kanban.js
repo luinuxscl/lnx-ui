@@ -142,12 +142,18 @@
                     return;
                 }
 
+                const scrollRoot = this.$root;
+
                 this.$root.querySelectorAll('[data-kanban-list]').forEach((list) => {
                     this.sortables.push(window.Sortable.create(list, {
                         group: 'lnx-kanban',
                         animation: 180,
                         easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
                         draggable: '[data-kanban-card]',
+                        scroll: scrollRoot,
+                        scrollSensitivity: 64,
+                        scrollSpeed: 14,
+                        bubbleScroll: true,
                         ghostClass: 'lnx-kanban-ghost',
                         chosenClass: 'lnx-kanban-chosen',
                         dragClass: 'lnx-kanban-drag',
