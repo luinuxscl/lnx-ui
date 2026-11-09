@@ -6,7 +6,7 @@
 <div
     x-data="lnxKanban()"
     x-init="init()"
-    {{ $attributes->class('flex h-full min-h-0 items-stretch gap-3 overflow-x-auto overflow-y-hidden pb-1') }}
+    {{ $attributes->class('flex h-full min-h-0 cursor-grab items-stretch gap-3 overflow-x-auto overflow-y-hidden pb-1') }}
 >
     {{ $slot }}
 </div>
@@ -28,6 +28,15 @@
 
         .dark .lnx-kanban-drag {
             box-shadow: 0 16px 40px rgb(0 0 0 / 0.55);
+        }
+
+        .lnx-kanban-grabbing {
+            cursor: grabbing;
+            user-select: none;
+        }
+
+        .lnx-kanban-grabbing [data-kanban-card] {
+            cursor: grabbing;
         }
     </style>
     @if ($sortable !== '')
