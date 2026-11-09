@@ -25,5 +25,7 @@ it('renders kanban columns and cards with a drag hook', function () {
         ->toContain('Sortable')
         ->toContain('kanban-move')
         ->toContain('bindPan')
-        ->toContain('cursor-grab');
+        ->toContain('cursor-grab')
+        ->toContain('scrollSensitivity')
+        ->toContain('lnx-kanban-ghost');
 });
