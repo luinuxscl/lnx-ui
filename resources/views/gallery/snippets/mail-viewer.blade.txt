@@ -1,0 +1,3 @@
+<x-lnx-ui::mail-viewer sender="Ada" email="ada@example.com" subject="Hello" date="Today 09:00">
+    {{ __('Message body') }}
+</x-lnx-ui::mail-viewer>

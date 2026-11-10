@@ -1,0 +1,1 @@
+<x-lnx-ui::trend-card :label="__('Sales')" value="2,968" change="+3.2%" :series="[10, 20, 30, 40]" color="emerald" />

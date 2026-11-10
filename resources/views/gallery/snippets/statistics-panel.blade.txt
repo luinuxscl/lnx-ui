@@ -1,0 +1,3 @@
+<x-lnx-ui::statistics-panel :title="__('Statistics')" :updated-label="__('Updated recently')">
+    <x-lnx-ui::stat class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('Sales')" value="230k" icon="chart-pie" />
+</x-lnx-ui::statistics-panel>

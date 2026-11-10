@@ -1,0 +1,1 @@
+<x-lnx-ui::resource-card :title="__('Skill')" :description="__('Short summary.')" icon="sparkles" eyebrow="Skills" href="#" color="accent" />

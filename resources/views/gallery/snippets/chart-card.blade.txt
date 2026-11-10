@@ -1,0 +1,1 @@
+<x-lnx-ui::chart-card :label="__('Revenue')" value="24.6k" :series="[3, 8, 12, 18]" chart="line" color="blue" />

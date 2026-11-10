@@ -1,0 +1,1 @@
+<x-lnx-ui::summary-card :label="__('Balance')" value="$9,745" icon="currency-dollar" color="cyan" />

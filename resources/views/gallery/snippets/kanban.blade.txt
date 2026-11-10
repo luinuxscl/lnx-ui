@@ -1,0 +1,5 @@
+<x-lnx-ui::kanban>
+    <x-lnx-ui::kanban.column title="To do" column-id="1" :count="1">
+        <x-lnx-ui::kanban.card card-id="9">Item</x-lnx-ui::kanban.card>
+    </x-lnx-ui::kanban.column>
+</x-lnx-ui::kanban>

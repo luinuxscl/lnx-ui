@@ -1,0 +1,1 @@
+<x-lnx-ui::media-cell :title="__('Invoice #42')" description="PDF" icon="document" href="#" color="violet" />

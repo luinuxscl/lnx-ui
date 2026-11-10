@@ -1,0 +1,1 @@
+<x-lnx-ui::metric-card :label="__('Total sales')" value="24.67k" icon="shopping-bag" color="emerald" />

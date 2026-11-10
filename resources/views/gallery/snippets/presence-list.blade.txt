@@ -1,0 +1,1 @@
+<x-lnx-ui::presence-list :users="[['name' => 'Ada', 'online' => true, 'line' => 'Editing']]" />

@@ -1,0 +1,8 @@
+<x-lnx-ui::data-table :title="__('Users')">
+    <x-slot:toolbar>
+        <flux:input type="search" />
+    </x-slot:toolbar>
+    <flux:table>
+        {{-- rows --}}
+    </flux:table>
+</x-lnx-ui::data-table>
