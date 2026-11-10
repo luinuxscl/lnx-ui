@@ -1,0 +1,1 @@
+<x-lnx-ui::rich-text-editor wire:model="bodyHtml" :label="__('Body')" :placeholder="__('Start writing…')" />

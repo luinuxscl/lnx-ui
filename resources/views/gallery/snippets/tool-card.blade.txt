@@ -1,0 +1,1 @@
+<x-lnx-ui::tool-card :title="__('Users')" :description="__('Manage accounts.')" icon="users" href="#" color="blue" />

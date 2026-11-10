@@ -1,0 +1,6 @@
+<x-lnx-ui::data-table-inline :title="__('Users')">
+    <x-slot:filters>
+        <flux:input type="search" />
+    </x-slot:filters>
+    <flux:table />
+</x-lnx-ui::data-table-inline>

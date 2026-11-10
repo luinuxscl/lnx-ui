@@ -1,0 +1,1 @@
+<x-lnx-ui::properties-card :title="__('Details')" :items="[['label' => __('Email'), 'value' => 'ada@example.com']]" />

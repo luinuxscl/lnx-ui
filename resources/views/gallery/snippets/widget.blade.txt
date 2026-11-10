@@ -1,0 +1,3 @@
+<x-lnx-ui::widget :title="__('Statistics')" :description="__('Overview')" href="#" span="6">
+    <p class="text-sm text-zinc-500">{{ __('Content goes here.') }}</p>
+</x-lnx-ui::widget>

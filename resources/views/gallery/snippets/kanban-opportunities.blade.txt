@@ -1,0 +1,21 @@
+{{-- Opportunities board pattern (see CRM livewire/opportunities/board.blade.php) --}}
+<x-lnx-ui::kanban x-on:kanban-move="$wire.move($event.detail.cardId, $event.detail.toColumnId, $event.detail.index)">
+    <x-lnx-ui::kanban.column
+        title="Qualified to buy"
+        column-id="stage-id"
+        :count="2"
+        meta="$ 12.400"
+        meta-title="USD"
+        header-class="bg-teal-500/10 dark:bg-teal-500/15"
+        class="border-t-2 border-t-teal-500 dark:border-t-teal-500/80"
+    >
+        <x-lnx-ui::kanban.card card-id="9" class="border-s-2 border-s-teal-500 dark:border-s-teal-500/80">
+            {{-- title, amount, company, close date, avatar --}}
+        </x-lnx-ui::kanban.card>
+        <x-slot:footer>
+            <flux:button type="button" variant="ghost" size="sm" icon="plus" class="w-full justify-start">
+                Add opportunity
+            </flux:button>
+        </x-slot:footer>
+    </x-lnx-ui::kanban.column>
+</x-lnx-ui::kanban>

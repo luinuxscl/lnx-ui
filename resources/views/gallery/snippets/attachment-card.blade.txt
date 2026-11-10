@@ -1,0 +1,1 @@
+<x-lnx-ui::attachment-card name="report.pdf" size="1.2 MB" icon="document" href="#" color="zinc" />
