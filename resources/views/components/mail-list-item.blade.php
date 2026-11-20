@@ -94,7 +94,7 @@
                     ])
                     aria-label="{{ $starLabel }}"
                 >
-                    <flux:icon icon="star" variant="solid" x-show="starred" class="size-4" />
+                    <flux:icon icon="star" x-show="starred" class="size-4 fill-current" />
                     <flux:icon icon="star" x-show="! starred" class="size-4" />
                 </button>
             </div>
