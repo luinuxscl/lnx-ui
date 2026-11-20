@@ -48,7 +48,7 @@
     <div class="flex h-full min-w-0 items-center justify-between gap-4">
         <div class="min-w-0">
             <p class="text-sm font-medium text-zinc-700 dark:text-zinc-200">{{ $label }}</p>
-            <p class="mt-3 text-3xl font-semibold leading-none tabular-nums text-zinc-900 dark:text-zinc-100">{{ $value }}</p>
+            <p class="mt-3 font-display text-3xl font-semibold leading-none tabular-nums text-zinc-900 dark:text-zinc-100">{{ $value }}</p>
             <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300">{{ $change }}</p>
         </div>
 

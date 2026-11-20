@@ -128,7 +128,7 @@
     @endif
 
     <div class="mt-auto flex flex-wrap items-baseline gap-x-3 gap-y-1">
-        <p class="text-3xl font-semibold leading-none tabular-nums text-zinc-900 dark:text-zinc-100">{{ $value }}</p>
+        <p class="font-display text-3xl font-semibold leading-none tabular-nums text-zinc-900 dark:text-zinc-100">{{ $value }}</p>
 
         @if ($hasChange)
             <span @class([

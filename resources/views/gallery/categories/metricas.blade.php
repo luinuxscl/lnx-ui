@@ -28,6 +28,12 @@
                     <x-lnx-ui::stat-card class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('lnx-ui::design-gallery.products')" value="1.423k" icon="shopping-cart" color="rose" href="#" />
                     <x-lnx-ui::stat-card class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('lnx-ui::design-gallery.revenue')" value="$9745" icon="currency-dollar" color="emerald" href="#" />
                 </div>
+
+                {{-- Display variant: the value leads with the host display font for dashboard hero figures. --}}
+                <div class="grid grid-cols-12 gap-4">
+                    <x-lnx-ui::stat-card class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('lnx-ui::design-gallery.sales')" value="230k" icon="chart-pie" color="violet" display href="#" />
+                    <x-lnx-ui::stat-card class="col-span-12 md:col-span-6 xl:col-span-3" :label="__('lnx-ui::design-gallery.customers')" value="8.549k" icon="users" color="cyan" display href="#" />
+                </div>
                 @if ($showSnippets ?? false)
                     <x-lnx-ui::gallery-snippet name="stat-card" />
                 @endif
