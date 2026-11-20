@@ -47,7 +47,7 @@
                 @continue(blank($label))
 
                 <div class="min-w-0">
-                    <dt class="text-xs font-medium uppercase tracking-wide text-zinc-500 dark:text-zinc-400">{{ $label }}</dt>
+                    <dt class="text-xs font-medium text-zinc-500 dark:text-zinc-400">{{ $label }}</dt>
 
                     <dd class="mt-1 flex min-w-0 items-start gap-2 text-sm text-zinc-900 dark:text-zinc-100">
                         @if (filled($icon))
