@@ -15,7 +15,7 @@
     $tableClasses = trim('w-full '.(string) $tableClass);
 @endphp
 
-<flux:card {{ $attributes->class('overflow-hidden p-0') }}>
+<flux:card {{ $attributes->class('overflow-hidden rounded-lg p-0') }}>
     @if ($hasHeader)
         <div class="space-y-4 p-4 sm:p-6">
             @if (filled($title))
@@ -30,7 +30,7 @@
 
             @if ($hasFilters)
                 @if (filled($filtersLabel))
-                    <flux:text class="text-xs font-medium uppercase tracking-wide text-zinc-500 dark:text-zinc-400">{{ $filtersLabel }}</flux:text>
+                    <flux:text class="text-xs font-medium text-zinc-500 dark:text-zinc-400">{{ $filtersLabel }}</flux:text>
                 @endif
 
                 <div class="flex flex-wrap items-end gap-4">{{ $filters }}</div>

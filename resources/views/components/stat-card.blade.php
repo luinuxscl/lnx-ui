@@ -6,6 +6,7 @@
     'href' => null,
     'active' => false,
     'external' => false,
+    'display' => false,
 ])
 
 @php
@@ -24,11 +25,11 @@
 @endif
 
     <flux:card @class([
-        'h-full transition',
-        'group-hover:border-zinc-300 group-hover:bg-zinc-50 dark:group-hover:border-zinc-600 dark:group-hover:bg-zinc-800/60' => $isLink,
+        'h-full transition duration-200',
+        'group-hover:-translate-y-0.5 group-hover:border-zinc-300 dark:group-hover:border-zinc-600' => $isLink,
         'border-accent ring-1 ring-accent/40' => $active,
     ])>
-        <x-lnx-ui::stat :$label :$value :$icon :$color />
+        <x-lnx-ui::stat :$label :$value :$icon :$color :$display />
     </flux:card>
 
 @if ($isLink)
