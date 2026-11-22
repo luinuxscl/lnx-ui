@@ -52,7 +52,11 @@
         @endif
     </div>
 
-    <x-lnx-ui::sam-signals :observations="$brief->observations" :actions="$brief->actions" />
+    @if (filled($brief->narrative) && $brief->observations === [] && $brief->actions === [])
+        {{-- The narrative already covers the "no signals" case: do not repeat an empty WHAT I SEE (crm#16). --}}
+    @else
+        <x-lnx-ui::sam-signals :observations="$brief->observations" :actions="$brief->actions" />
+    @endif
 
     @if (filled($brief->continuePrompt))
         <div class="flex flex-wrap gap-2">

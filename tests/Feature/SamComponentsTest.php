@@ -467,6 +467,55 @@ it('renders the shared signals block for observations and actions', function () 
         ->toContain('text-accent-content');
 });
 
+it('hides the empty signals block when the brief narrative already covers it', function () {
+    $brief = (object) [
+        'label' => 'Felipe Aguilar',
+        'resourceLabel' => 'Contact',
+        'narrative' => 'I see nothing worth attention on this contact.',
+        'observations' => [],
+        'actions' => [],
+        'narrativeUrl' => null,
+        'continuePrompt' => 'Summarize this contact',
+    ];
+
+    $html = Blade::render('<x-lnx-ui::sam-brief :brief="$brief" />', ['brief' => $brief]);
+
+    expect($html)
+        ->toContain('I see nothing worth attention on this contact.')
+        ->not->toContain('What I see')
+        ->not->toContain('No points of attention.');
+});
+
+it('keeps the signals block when the brief has observations or lacks a narrative', function () {
+    $withObservations = (object) [
+        'label' => 'Felipe Aguilar',
+        'resourceLabel' => 'Contact',
+        'narrative' => 'Here is the summary.',
+        'observations' => ['No company.'],
+        'actions' => [],
+        'narrativeUrl' => null,
+        'continuePrompt' => null,
+    ];
+
+    $withoutNarrative = (object) [
+        'label' => 'Felipe Aguilar',
+        'resourceLabel' => 'Contact',
+        'narrative' => '',
+        'observations' => [],
+        'actions' => [],
+        'narrativeUrl' => null,
+        'continuePrompt' => null,
+    ];
+
+    expect(Blade::render('<x-lnx-ui::sam-brief :brief="$brief" />', ['brief' => $withObservations]))
+        ->toContain('What I see')
+        ->toContain('No company.');
+
+    expect(Blade::render('<x-lnx-ui::sam-brief :brief="$brief" />', ['brief' => $withoutNarrative]))
+        ->toContain('What I see')
+        ->toContain('No points of attention.');
+});
+
 it('documents the sam surface in the design gallery', function () {
     $html = view('lnx-ui::design-gallery')->render();
 
