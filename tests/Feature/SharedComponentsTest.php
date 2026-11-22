@@ -19,6 +19,14 @@ it('renders the stat card wrapping the stat component', function () {
         ->not->toContain('<a ');
 });
 
+it('renders the zinc tone on the stat icon instead of falling back to the accent', function () {
+    $html = Blade::render('<x-lnx-ui::stat label="Archived" value="8" icon="no-symbol" color="zinc" />');
+
+    expect($html)
+        ->toContain('bg-zinc-100 text-zinc-600')
+        ->toContain('dark:bg-zinc-500/15 dark:text-zinc-400');
+});
+
 it('turns the stat card into a link and marks the active filter', function () {
     $link = Blade::render('<x-lnx-ui::stat-card label="Users" value="1,234" icon="users" href="/users" />');
     $active = Blade::render('<x-lnx-ui::stat-card label="Users" value="1,234" icon="users" href="/users" active />');
