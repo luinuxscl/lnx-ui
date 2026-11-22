@@ -222,6 +222,21 @@ it('rejects confirmation input for an expired proposal', function () {
         ->not->toContain('Confirm</');
 });
 
+it('renders proposal status badges with the same color matrix as the CRM reviewer', function () {
+    $color = fn (string $status): string => Blade::render(
+        '<x-lnx-ui::sam-proposal-card source="crm" id="1" title="T" :changes="[]" :status="$status" />',
+        ['status' => $status],
+    );
+
+    expect($color('confirmed'))->toContain('bg-emerald')
+        ->and($color('duplicate'))->toContain('bg-emerald')
+        ->and($color('pending'))->toContain('bg-amber')
+        ->and($color('confirming'))->toContain('bg-amber')
+        ->and($color('expired'))->toContain('bg-zinc')
+        ->and($color('rejected'))->toContain('bg-zinc')
+        ->and($color('failed'))->toContain('bg-rose');
+});
+
 it('defaults the risk to irreversible and labels it', function () {
     $html = Blade::render(<<<'BLADE'
         <x-lnx-ui::sam-proposal-card

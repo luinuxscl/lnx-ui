@@ -24,11 +24,13 @@
     $statusLabel = \Illuminate\Support\Facades\Lang::has('lnx-ui::components.sam_proposal_statuses.'.$state)
         ? __('lnx-ui::components.sam_proposal_statuses.'.$state)
         : $state;
+    // Misma matriz de estados que el revisor web del módulo CRM (crm#16):
+    // confirmado/duplicado=esmeralda, en curso=ámbar, caducado/descartado=zinc, resto=rose.
     $badgeColor = match (true) {
-        $state === 'confirmed' => 'green',
-        in_array($state, ['pending', 'draft', 'proposed'], true) => 'amber',
-        $state === 'duplicate' => 'zinc',
-        default => 'red',
+        in_array($state, ['confirmed', 'duplicate'], true) => 'emerald',
+        in_array($state, ['pending', 'draft', 'proposed', 'confirming'], true) => 'amber',
+        in_array($state, ['expired', 'rejected'], true) => 'zinc',
+        default => 'rose',
     };
     $riskLabel = __("lnx-ui::components.sam_proposal_risks.{$risk}");
     $riskIcon = match ($risk) {
