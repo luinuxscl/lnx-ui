@@ -1,0 +1,28 @@
+<x-lnx-ui::filter-bar>
+    <x-lnx-ui::filter-control width="w-64">
+        <flux:input size="sm" icon="magnifying-glass" wire:model.live.debounce.300ms="search" />
+    </x-lnx-ui::filter-control>
+
+    <x-lnx-ui::filter-chip
+        name="status"
+        icon="funnel"
+        :label="__('Status')"
+        :options="['active' => 'Active', 'inactive' => 'Inactive']"
+        any-label="All"
+        :active="$status !== ''"
+    />
+
+    {{-- Date ranges stay inline: they do not fit a chip-select. --}}
+    <x-lnx-ui::filter-control width="w-40">
+        <flux:input size="sm" type="date" wire:model.live="from" />
+    </x-lnx-ui::filter-control>
+
+    {{-- ms-auto on a wrapper: the flex item is the tooltip wrapper. --}}
+    <div class="ms-auto flex items-center gap-2">
+        @if ($this->hasActiveFilters())
+            <flux:button size="sm" square icon="funnel-x" wire:click="clearFilters" />
+        @endif
+
+        <x-lnx-ui::table-per-page :options="[10, 25, 50]" aria-label="Per page" />
+    </div>
+</x-lnx-ui::filter-bar>
