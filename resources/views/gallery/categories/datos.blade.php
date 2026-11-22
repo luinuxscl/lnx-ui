@@ -172,3 +172,62 @@
                     <x-lnx-ui::gallery-snippet name="data-table-inline" />
                 @endif
             </div>
+
+            <div id="filter-chip" class="scroll-mt-24 space-y-3">
+                <flux:heading level="3"><code class="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-sm dark:bg-zinc-800">x-lnx-ui::filter-chip / filter-bar / filter-control / table-per-page</code></flux:heading>
+
+                <flux:text class="text-sm text-zinc-600 dark:text-zinc-400">
+                    {{ __('lnx-ui::design-gallery.filter_intro') }}
+                </flux:text>
+
+                @php
+                    $demoOptions = [
+                        'active' => __('lnx-ui::design-gallery.status_active'),
+                        'inactive' => __('lnx-ui::design-gallery.status_inactive'),
+                        'scheduled' => __('lnx-ui::design-gallery.status_scheduled'),
+                    ];
+                @endphp
+
+                <x-lnx-ui::filter-bar>
+                    <x-lnx-ui::filter-control width="w-64">
+                        <flux:input
+                            size="sm"
+                            icon="magnifying-glass"
+                            :placeholder="__('lnx-ui::design-gallery.filter_search_placeholder')"
+                        />
+                    </x-lnx-ui::filter-control>
+
+                    {{-- Demo estático: el chip real se enlaza con wire:model en el listado vivo. --}}
+                    <x-lnx-ui::filter-chip
+                        name="galleryDemoStatus"
+                        icon="funnel"
+                        :label="__('lnx-ui::design-gallery.filter_status')"
+                        :options="$demoOptions"
+                        :any-label="__('lnx-ui::design-gallery.filter_all')"
+                        :active="true"
+                    />
+
+                    {{-- Los rangos de fechas no caben en un chip-select: se quedan inline. --}}
+                    <x-lnx-ui::filter-control width="w-40">
+                        <flux:input size="sm" type="date" :aria-label="__('lnx-ui::design-gallery.filter_from')" />
+                    </x-lnx-ui::filter-control>
+
+                    <div class="ms-auto flex items-center gap-2">
+                        <flux:button
+                            size="sm"
+                            square
+                            icon="funnel-x"
+                            :tooltip="__('lnx-ui::design-gallery.clear_filters')"
+                            :aria-label="__('lnx-ui::design-gallery.clear_filters')"
+                        />
+                        <x-lnx-ui::table-per-page
+                            :options="[10, 25, 50]"
+                            :aria-label="__('lnx-ui::design-gallery.filter_per_page')"
+                        />
+                    </div>
+                </x-lnx-ui::filter-bar>
+
+                @if ($showSnippets ?? false)
+                    <x-lnx-ui::gallery-snippet name="filter-chip" />
+                @endif
+            </div>
