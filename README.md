@@ -83,6 +83,7 @@ Las cadenas de la galería viven en el namespace `lnx-ui::design-gallery` (`lang
 | `x-lnx-ui::chip` | `label`, `icon`, `color`; el slot es el fallback |
 | `x-lnx-ui::media-cell` | `title`, `description`, `icon`, `image`, `href`, `color` |
 | `x-lnx-ui::summary-card` | `label`, `value`, `caption`, `change`, `icon`, `color` |
+| `x-lnx-ui::progress` | `label`, `value`, `max`, `hint` (todos opcionales salvo `value`) |
 | `x-lnx-ui::page-header` | `title`, `subtitle`, `eyebrow`, `icon`, `color`; slots `eyebrow` y `actions` |
 | `x-lnx-ui::data-table` | `title` (opcional), `description`, `filters-label`, `paginate`, `table-class`, `container-class`; slots `filters`, `toolbar`, `actions` y el contenido de la tabla |
 | `x-lnx-ui::data-table-inline` | `title` (opcional), `description`, `paginate`, `table-class`, `container-class`; slots `filters`, `filtersActions`, `toolbar`, `actions` y el contenido de la tabla |
@@ -139,6 +140,12 @@ El `eyebrow` se puede pasar como texto o como slot cuando el contenido necesita 
 ```
 
 `data-table-inline` es la variante compacta de `data-table` para barras de filtros: no muestra el rótulo de filtros y coloca el slot `filtersActions` (exportar, limpiar, etc.) alineado a la derecha dentro de la misma fila que `filters`, ajustándose a ancho completo en pantallas estrechas.
+
+`x-lnx-ui::progress` muestra el avance de una operación de larga duración (importación, acciones masivas, turnos de IA, trabajos en cola): `value`/`max` calculan el porcentaje con tope en 0–100, la barra va en el color `accent` del tema y `label`/`hint` son textos ya traducidos del consumidor. Sin un dato de progreso real, el consumidor usa un indicador propio en vez de inventar valores.
+
+```blade
+<x-lnx-ui::progress :label="__('Processing import')" :value="3" :max="8" :hint="__('3 of 8')" />
+```
 
 `data-table` renderiza el `title` solo si se entrega: sin título ni slot `filters`, desaparece la fila superior. `container-class` se reenvía al contenedor de `flux:table` (el que envuelve la tabla, el pie y la paginación), útil para acotar la altura y fijar el encabezado (por ejemplo `container-class="max-h-[70vh] overflow-auto"` junto con `sticky` en `flux:table.columns`). No lo uses para el ancho.
 

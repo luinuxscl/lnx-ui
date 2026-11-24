@@ -231,3 +231,20 @@
                     <x-lnx-ui::gallery-snippet name="filter-chip" />
                 @endif
             </div>
+
+            <div id="progress" class="scroll-mt-24 space-y-3">
+                <flux:heading level="3"><code class="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-sm dark:bg-zinc-800">x-lnx-ui::progress</code></flux:heading>
+
+                <flux:text class="text-sm text-zinc-600 dark:text-zinc-400">
+                    {{ __('lnx-ui::design-gallery.progress_intro') }}
+                </flux:text>
+
+                <div class="grid gap-4 sm:max-w-lg">
+                    <x-lnx-ui::progress :label="__('lnx-ui::design-gallery.progress_label')" :value="3" :max="8" :hint="__('lnx-ui::design-gallery.progress_hint')" />
+                    <x-lnx-ui::progress :label="__('lnx-ui::design-gallery.progress_label_done')" :value="100" :max="100" />
+                </div>
+
+                @if ($showSnippets ?? false)
+                    <x-lnx-ui::gallery-snippet name="progress" />
+                @endif
+            </div>
