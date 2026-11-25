@@ -11,7 +11,7 @@
     {{ $slot }}
 </div>
 
-@once
+@assets
     <style>
         .lnx-kanban-ghost {
             opacity: 1;
@@ -59,4 +59,4 @@
     @if ($behavior !== '')
         <script>{!! $behavior !!}</script>
     @endif
-@endonce
+@endassets

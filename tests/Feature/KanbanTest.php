@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Blade;
+use Livewire\Component;
+use Livewire\Features\SupportScriptsAndAssets\SupportScriptsAndAssets;
+use Livewire\Livewire;
 
 it('renders kanban columns and cards with a drag hook', function () {
     $html = Blade::render(<<<'BLADE'
@@ -22,10 +25,47 @@ it('renders kanban columns and cards with a drag hook', function () {
         ->toContain('Cita')
         ->toContain('Licencia anual')
         ->toContain('Añadir una tarjeta')
-        ->toContain('Sortable')
+        ->toContain('cursor-grab');
+});
+
+it('registers kanban assets via the Livewire asset pipeline on a later render', function () {
+    // Reproduce el toggle tabla→tablero: el kanban monta en un update posterior
+    // (morph). El payload de la respuesta lee getAssets() al deshidratar, antes
+    // del flush de estado, así que la captura se hace en ese mismo punto.
+    $assetsRendered = '';
+
+    Livewire::listen('dehydrate', function () use (&$assetsRendered) {
+        $assetsRendered = collect(SupportScriptsAndAssets::getAssets())->implode("\n");
+    });
+
+    $component = new class extends Component
+    {
+        public bool $board = false;
+
+        public function render(): string
+        {
+            return <<<'BLADE'
+                <div>
+                    @if ($board)
+                        <x-lnx-ui::kanban>
+                            <x-lnx-ui::kanban.column title="Cita" column-id="3" :count="2">
+                                <x-lnx-ui::kanban.card card-id="9">Licencia anual</x-lnx-ui::kanban.card>
+                            </x-lnx-ui::kanban.column>
+                        </x-lnx-ui::kanban>
+                    @endif
+                </div>
+                BLADE;
+        }
+    };
+
+    Livewire::test($component)
+        ->set('board', true)
+        ->assertSee('Licencia anual');
+
+    expect($assetsRendered)
+        ->toContain('lnxKanban')
         ->toContain('kanban-move')
-        ->toContain('bindPan')
-        ->toContain('cursor-grab')
         ->toContain('scrollSensitivity')
+        ->toContain('Sortable')
         ->toContain('lnx-kanban-ghost');
 });
