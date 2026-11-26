@@ -163,7 +163,7 @@
                         emptyInsertThreshold: 56,
                         delayOnTouchOnly: true,
                         delay: 120,
-                        filter: 'button, input, select, textarea',
+                        filter: 'button, input, select, textarea, [data-kanban-locked]',
                         preventOnFilter: false,
                         onEnd: (event) => {
                             const card = event.item;
