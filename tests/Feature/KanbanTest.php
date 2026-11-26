@@ -28,6 +28,43 @@ it('renders kanban columns and cards with a drag hook', function () {
         ->toContain('cursor-grab');
 });
 
+it('marks locked cards as non draggable while unlocked cards stay draggable', function () {
+    $html = Blade::render(<<<'BLADE'
+        <x-lnx-ui::kanban>
+            <x-lnx-ui::kanban.column title="Cita" column-id="3">
+                <x-lnx-ui::kanban.card card-id="9" :locked="true">Tarjeta ajena</x-lnx-ui::kanban.card>
+                <x-lnx-ui::kanban.card card-id="10">Tarjeta propia</x-lnx-ui::kanban.card>
+            </x-lnx-ui::kanban.column>
+        </x-lnx-ui::kanban>
+        BLADE);
+
+    $stripped = preg_replace('/\s+/', '', $html);
+
+    expect($stripped)
+        ->toContain('data-kanban-card="9"data-kanban-locked="true"')
+        ->toContain('cursor-default')
+        ->toContain('data-kanban-card="10"')
+        ->not->toContain('data-kanban-card="10"data-kanban-locked');
+});
+
+it('renders a lone locked card without the grab cursor', function () {
+    $html = Blade::render(<<<'BLADE'
+        <x-lnx-ui::kanban>
+            <x-lnx-ui::kanban.column title="Cita" column-id="3">
+                <x-lnx-ui::kanban.card card-id="9" :locked="true">Tarjeta ajena</x-lnx-ui::kanban.card>
+            </x-lnx-ui::kanban.column>
+        </x-lnx-ui::kanban>
+        BLADE);
+
+    $stripped = preg_replace('/\s+/', '', $html);
+
+    // El artículo bloqueado cierra su clase con cursor-default, sin grab/grabbing.
+    expect($stripped)
+        ->toContain('data-kanban-locked="true"')
+        ->toContain('cursor-default">')
+        ->not->toContain('cursor-grab">');
+});
+
 it('registers kanban assets via the Livewire asset pipeline on a later render', function () {
     // Reproduce el toggle tabla→tablero: el kanban monta en un update posterior
     // (morph). El payload de la respuesta lee getAssets() al deshidratar, antes
@@ -67,5 +104,6 @@ it('registers kanban assets via the Livewire asset pipeline on a later render', 
         ->toContain('kanban-move')
         ->toContain('scrollSensitivity')
         ->toContain('Sortable')
-        ->toContain('lnx-kanban-ghost');
+        ->toContain('lnx-kanban-ghost')
+        ->toContain('data-kanban-locked');
 });
