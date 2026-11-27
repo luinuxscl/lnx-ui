@@ -237,3 +237,23 @@
                     <x-lnx-ui::gallery-snippet name="chip" />
                 @endif
             </div>
+            <div id="brand-logo" class="scroll-mt-24 space-y-3">
+                <flux:heading level="3"><code class="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-sm dark:bg-zinc-800">x-lnx-ui::brand-logo</code></flux:heading>
+
+                <flux:card>
+                    <flux:text class="text-xs font-medium uppercase tracking-wide text-zinc-500 dark:text-zinc-400">{{ __('lnx-ui::design-gallery.brand_logos') }}</flux:text>
+                    <div class="mt-3 flex flex-wrap items-center gap-6">
+                        <span class="inline-flex items-center gap-2 text-sm text-zinc-700 dark:text-zinc-200">
+                            <x-lnx-ui::brand-logo name="google-calendar" class="size-6" />
+                            Google Calendar
+                        </span>
+                        <span class="inline-flex items-center gap-2 text-sm text-zinc-700 dark:text-zinc-200">
+                            <x-lnx-ui::brand-logo name="google-meet" class="size-6" />
+                            Google Meet
+                        </span>
+                    </div>
+                </flux:card>
+                @if ($showSnippets ?? false)
+                    <x-lnx-ui::gallery-snippet name="brand-logo" />
+                @endif
+            </div>

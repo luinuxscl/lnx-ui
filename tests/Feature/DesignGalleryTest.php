@@ -18,6 +18,7 @@ it('renders the shared design gallery with component anchors', function () {
         ->toContain('id="summary-card"')
         ->toContain('id="media-cell"')
         ->toContain('id="chip"')
+        ->toContain('id="brand-logo"')
         ->toContain('id="data-table"')
         ->toContain('id="page-header"')
         ->toContain('id="mail-list-item"')
