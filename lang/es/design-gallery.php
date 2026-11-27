@@ -153,6 +153,7 @@ return [
     'media_cell_with_icon' => 'Con icono',
     'media_cell_text' => 'Solo texto',
     'chip_colors' => 'Variantes de color',
+    'brand_logos' => 'Logos de marca (SVGL, vendorizados)',
     'role_design_lead' => 'Líder de diseño',
     'role_backend' => 'Ingeniero backend',
     'role_product_manager' => 'Jefe de producto',

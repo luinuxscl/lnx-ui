@@ -153,6 +153,7 @@ return [
     'media_cell_with_icon' => 'With icon',
     'media_cell_text' => 'Text only',
     'chip_colors' => 'Color variants',
+    'brand_logos' => 'Brand logos (SVGL, vendored)',
     'role_design_lead' => 'Design lead',
     'role_backend' => 'Backend engineer',
     'role_product_manager' => 'Product manager',

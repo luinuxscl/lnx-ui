@@ -1,0 +1,5 @@
+<x-lnx-ui::brand-logo name="google-calendar" class="size-6" />
+<x-lnx-ui::brand-logo name="google-meet" class="size-6" />
+
+{{-- Directo, sin wrapper --}}
+<x-lnx-ui::brand-logos.google-calendar class="size-8" />
