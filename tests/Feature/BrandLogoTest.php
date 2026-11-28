@@ -34,3 +34,21 @@ it('merges extra attributes into the svg root', function () {
 
     expect($html)->toContain('title="Google Calendar"');
 });
+
+it('renders the gmail logo through the wrapper', function () {
+    $html = Blade::render('<x-lnx-ui::brand-logo name="gmail" class="size-4" />');
+
+    expect($html)
+        ->toContain('<svg')
+        ->toContain('viewBox="0 0 192 192"')
+        ->toContain('class="size-4"')
+        ->toContain('aria-hidden="true"')
+        ->toContain('url(#gmail-a)')
+        ->not->toContain('width="192"');
+});
+
+it('keeps the multicolor fills of gmail', function () {
+    $html = Blade::render('<x-lnx-ui::brand-logos.gmail />');
+
+    expect($html)->toContain('fill="#fc413d"');
+});

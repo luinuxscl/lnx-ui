@@ -251,6 +251,10 @@
                             <x-lnx-ui::brand-logo name="google-meet" class="size-6" />
                             Google Meet
                         </span>
+                        <span class="inline-flex items-center gap-2 text-sm text-zinc-700 dark:text-zinc-200">
+                            <x-lnx-ui::brand-logo name="gmail" class="size-6" />
+                            Gmail
+                        </span>
                     </div>
                 </flux:card>
                 @if ($showSnippets ?? false)
